@@ -184,6 +184,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 /**
- * Remove Demo Mode Notice 
+ * Redux Customizer File 
  */
-// Redux::disable_demo();
+require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
+require get_template_directory() . '/lib/redux-framework/sample/config.php';

@@ -8,26 +8,63 @@
  *
  * @package Search_and_Go
  */
+global $sr_redux; 
+$sag_copyright_text = $sr_redux['copyright_text'];
+$logo = $sr_redux['footer_logo'];
+$vm_url = $sr_redux['vimeo_url'];
+$ig_url = $sr_redux['ig_url'];
+$tt_url = $sr_redux['tt_url'];
+$pt_url = $sr_redux['pt_url'];
+$fb_url = $sr_redux['fb_url'];
+$footer_bg = $sr_redux['footer_bg_image'];
+
+
+var_dump($footer_bg);
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="footer-top"></div>
-		<div class="footer-copyright">
+	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo $footer_bg['background-image'] ?>);background-color: <?php echo $footer_bg['background-color'] ?>;background-position: <?php echo $footer_bg['background-position'] ?>;background-size: <?php echo $footer_bg['background-size'] ?>;">
+		<div class="footer-top-holder">
 			<div class="container">
-			<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'search-and-go' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'search-and-go' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'search-and-go' ), 'search-and-go', '<a href="http://github.com/anisur2805/">Anisur Rahman</a>' );
-				?>
-		</div><!-- .site-info -->
+				<div class="footer-top-holder-wrapper">
+					<div class="column column1">
+						<ul>
+							<li>
+								<a href="<?php echo esc_url($vm_url); ?>" class="fa fa-vimeo"></a>
+							</li>
+							<li>
+								<a href="<?php echo esc_url($ig_url); ?>" class="fa fa-instagram"></a>
+							</li>
+							<li>
+								<a href="<?php echo esc_url($tt_url); ?>" class="fa fa-twitter"></a>
+							</li>
+							<li>
+								<a href="<?php echo esc_url($pt_url); ?>" class="fa fa-pinterest"></a>
+							</li>
+							<li>
+								<a href="<?php echo esc_url($fb_url); ?>" class="fa fa-facebook"></a>
+							</li>
+						</ul>
+					</div>
+					<div class="column column2">
+						<a href="/">
+							<img src="<?php echo esc_url($logo['url']); ?>" alt="Logo" />
+						</a>
+					</div>
+					<div class="column column3">
+						<div class="search-form">
+							<span class="fa fa-search"></span>
+							<input type="search" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom-holder">
+			<div class="container">
+				<div class="site-info">
+					<?php echo $sag_copyright_text; ?>
+				</div><!-- .site-info -->
 			</div>
 		</div>
 	</footer><!-- #colophon -->
