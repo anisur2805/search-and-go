@@ -135,6 +135,28 @@ function search_and_go_widgets_init() {
 add_action( 'widgets_init', 'search_and_go_widgets_init' );
 
 /**
+ * Admin Enqueue Script for Location Media 
+ *
+ * @return void
+ */
+function sg_image_uploader_enqueue() {
+    global $typenow;
+    if( ($typenow == 'location') ) {
+        wp_enqueue_media();
+
+        wp_register_script( 'sg-meta-img', get_template_directory_uri() . '/js/media.js', array( 'jquery' ) );
+        wp_localize_script( 'sg-meta-img', 'sg_meta_image',
+            array(
+                'title' => 'Upload an Image',
+                'button' => 'Use this Image',
+            )
+        );
+        wp_enqueue_script( 'sg-meta-img' );
+    }
+}
+add_action( 'admin_enqueue_scripts', 'sg_image_uploader_enqueue' );
+
+/**
  * Enqueue scripts and styles.
  */
 function search_and_go_scripts() {
@@ -168,6 +190,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Custom CPT.
+ */
+require get_template_directory() . '/inc/cpt.php';
 
 /**
  * Load Jetpack compatibility file.

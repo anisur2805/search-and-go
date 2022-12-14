@@ -22,6 +22,12 @@ Redux::set_section(
                 'default' => 'Quick and Easy Search',
             ),
             array(
+                'id'      => 'quick-easy-subtitle',
+                'title'   => 'Description',
+                'type'    => 'textarea',
+                'default' => '',
+            ),
+            array(
                 'id'     => 'quick-easy-section-rep-id',
                 'title'  => 'Quick and Easy Group',
                 'type'   => 'repeater',
