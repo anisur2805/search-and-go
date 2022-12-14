@@ -618,6 +618,18 @@ Redux::set_section(
 
 require_once Redux_Core::$dir . '../sample/sections/list-item/list-item.php';
 
+// -> START Place.
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Place', 'search-and-replace' ),
+		'id'               => 'place',
+		'customizer_width' => '500px',
+		'icon'             => 'el el-edit',
+	)
+);
+require_once Redux_Core::$dir . '../sample/sections/place/place.php';
+
 // -> START Testimonials.
 Redux::set_section(
 	$opt_name,

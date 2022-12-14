@@ -14,6 +14,10 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
+	<?php
+		get_template_part('/template-parts/locations', 'template' );
+	?>
+
 	<?php search_and_go_post_thumbnail(); ?>
 
 	<div class="entry-content">
