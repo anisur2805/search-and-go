@@ -169,6 +169,7 @@ function search_and_go_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
+	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">' );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css', array(), time() );
 }
 add_action( 'wp_enqueue_scripts', 'search_and_go_scripts' );
@@ -217,3 +218,11 @@ if ( class_exists( 'WooCommerce' ) ) {
  */
 require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
 require get_template_directory() . '/lib/redux-framework/sample/config.php';
+
+// Custom excerpt length 
+function sg_custom_excerpt_length( $length ) {
+	if ( get_post_type( get_the_ID() ) == 'location' ) {
+		return 30;
+	}
+}
+add_filter( 'excerpt_length', 'sg_custom_excerpt_length', 999 );

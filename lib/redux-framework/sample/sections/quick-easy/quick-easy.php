@@ -31,6 +31,7 @@ Redux::set_section(
                 'id'     => 'quick-easy-section-rep-id',
                 'title'  => 'Quick and Easy Group',
                 'type'   => 'repeater',
+                'group_values' => true,
                 'fields' => array(
                     array(
                         'id'      => 'quick-easy-title',
