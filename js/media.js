@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
     var meta_image_frame;
 
     // Runs when the image button is clicked.
-    $('#upload_image_btn').click(function(e){
+    $('#sg_term_img_upload_btn').click(function(e){
 
         // Prevents the default action from occuring.
         e.preventDefault();
@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
             var media_attachment = meta_image_frame.state().get('selection').first().toJSON();
 
             // Sends the attachment URL to our custom image input field.
-            $('#txt_upload_image').val(media_attachment.url);
+            $('#sg_term_img_upload').val(media_attachment.url);
         });
 
         // Opens the media library frame.

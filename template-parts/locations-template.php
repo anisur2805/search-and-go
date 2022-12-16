@@ -10,41 +10,26 @@
         </div>
 
         <div class="row">
-            <ul>
+            <ul class="location-lists">
 
                 <?php
-                $args = array(
-                    'hide_empty' => false, // also retrieve terms which are not used yet
-                    'meta_query' => array(
-                        array(
-                           'key'       => 'feature-group',
-                           'value'     => 'kitchen',
-                           'compare'   => 'LIKE'
-                        )
-                    )
-                );
-
                 $terms = get_terms('listing_item');
-
-         
-
                 foreach ($terms as $term) {
-                    var_dump($term);
-                    $term_meta  = get_term_meta( $term->term_id, 'txt_upload_image', true );
-                    $url = wp_get_attachment_url( $term_meta );
-                ?>
-                    <a> 
-                        <img src="<?php echo $url; ?>" alt=""/>
-                        <h3><?php echo $term->name; ?></h3> </a>
-                        <p><?php echo $term->description; ?></p> 
-                    </a>
+                    $term_meta  = get_term_meta( $term->term_id, 'sg_term_img', true );
+                    ?>
+                    <li>
+                        <a> 
+                            <img class="img-fluid" src="<?php echo $term_meta; ?>" alt="" />
+                            <h3><?php echo $term->name; ?></h3> </a>
+                        </a>
+                    </li>
                 <?php
                 }
                 ?>
 
                 <!-- <li>
                     <a href="#">
-                        <img src="<?php echo $url; ?>" alt="">
+                        <img src="<?php echo $term_meta; ?>" alt="">
                         <h4 class="location-category">
                             The Eiffel Tower
                         </h4>
