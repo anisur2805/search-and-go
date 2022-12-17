@@ -27,7 +27,7 @@ ul,
 li {
   list-style: none;
 }
-p.section-subtitle {
+.section-subtitle {
   font-size: 18px;
   max-width: 540px;
   margin-left: auto;
@@ -164,8 +164,33 @@ section#banner {
   background-size: cover;
   text-align: center;
   position: relative;
+  color: #fff;
+  .section-title {
+    margin-bottom: 40px;
+  }
+  .single-qs-item {
+    text-align: left;
+    p {
+      color: #fff;
+    }
+    &-top {
+      padding-left: 45px;
+      position: relative;
+      counter-reset: iCount;
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 50px;
+        color: #fff;
+        counter-increment: iCount;
+        content: counter(iCount);
+        display: inline-block; 
+      }
+    }
+  }
 }
-
+ 
 // Location CPT
 .locations-section {
   padding-top: 70px;

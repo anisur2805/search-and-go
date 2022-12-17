@@ -10607,7 +10607,7 @@ li {
   list-style: none;
 }
 
-p.section-subtitle {
+.section-subtitle {
   font-size: 18px;
   max-width: 540px;
   margin-left: auto;
@@ -10739,6 +10739,31 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   background-size: cover;
   text-align: center;
   position: relative;
+  color: #fff;
+}
+.quick-search .section-title {
+  margin-bottom: 40px;
+}
+.quick-search .single-qs-item {
+  text-align: left;
+}
+.quick-search .single-qs-item p {
+  color: #fff;
+}
+.quick-search .single-qs-item-top {
+  padding-left: 45px;
+  position: relative;
+  counter-reset: iCount;
+}
+.quick-search .single-qs-item-top:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 50px;
+  color: #fff;
+  counter-increment: iCount;
+  content: counter(iCount);
+  display: inline-block;
 }
 
 .locations-section {

@@ -52,7 +52,7 @@
                             $sg_location_args = array(
                                 'post_type'      => 'location',
                                 'post_status'    => 'publish',
-                                'posts_per_page' => -1,
+                                // 'posts_per_page' => -1,
                                 // 'order'          => 'asc',
                                 'tax_query' => array(
                                     array(

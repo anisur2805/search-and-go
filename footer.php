@@ -8,7 +8,7 @@
  *
  * @package Search_and_Go
  */
-if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
+if ( ! class_exists( 'Redux', false ) ) {
 	return;
 }
 global $sr_redux; 

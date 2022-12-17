@@ -1,32 +1,34 @@
 
 <?php
 
-// if ( ! class_exists( 'Redux_Framework_Plugin', false ) ) {
-// 	return;
-// }
+if ( ! class_exists( 'Redux' ) ) {
+    return;
+}
 
 global $sr_redux; 
-echo '<pre>';
-      print_r( $sr_redux );
-echo '</pre>';
 $sag_header     = $sr_redux['quick-easy-header'];
-$sag_title      = $sr_redux['quick-easy-title'];
-$sag_subtitle   = $sr_redux['quick-easy-subtitle'];
-$sag_content    = $sr_redux['quick-easy-content'];
+$quick_searches    = $sr_redux['quick-easy-section-rep-id'];
+
 ?>
 <section id="quick-search" class="quick-search" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/images/parallax2.jpg') ?>);">
     <div class="container">
         <div class="row">
-            <h2><?php echo esc_html($sag_header); ?></h2>
+            <h2 class="section-title"><?php echo esc_html($sag_header); ?></h2>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="quick-search-item">
-                    <h4><?php echo esc_html($sag_header); ?></h4>
-                    <p><?php echo esc_html($sag_subtitle[0]); ?></p>
-                    <p><?php echo esc_html($sag_content[0]); ?></p>
-                </div>
+            <?php 
+                $count = count($quick_searches['quick-easy-title']);
+                for ($i = 0; $i < $count; $i++) {
+                    echo '<div class="col-md-4 single-qs-item">';
+                        echo "<div class='single-qs-item-top'><h3>{$quick_searches['quick-easy-title'][$i]}</h3>";
+                        echo "<h5>{$quick_searches['quick-easy-subtitle'][$i]}</h5></div>";
+                        echo "<p>{$quick_searches['quick-easy-content'][$i]}</p>";
+                    echo '</div>';
+                }
+            ?>
+
             </div>
+          
         </div>
     </div>
 </section>
