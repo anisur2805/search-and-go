@@ -22,44 +22,42 @@
 
 <body <?php body_class();?>>
 <?php wp_body_open();?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'search-and-go');?></a>
-	<header id="masthead" class="site-header">
-		<nav class="navbar navbar-expand-lg bg-light">
-  
-  			<div class="site-branding">
-				<?php
-					the_custom_logo();
-					if (is_front_page() && is_home()):
-				?>
-				
-				<h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name');?></a></h1>
-				<?php else: ?>
-				<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name');?></a></p>
-				
-				<?php endif;
-				
-				$search_and_go_description = get_bloginfo('description', 'display');
-				if ($search_and_go_description || is_customize_preview()): ?>
+	<div id="page" class="site">
+		<header id="masthead" class="site-header">
+			
+			<nav class="navbar navbar-expand-lg bg-light">
+				<div class="navbar-header">
+					<div class="site-branding">
 
-				<p class="site-description"><?php echo $search_and_go_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped   ?></p>
-				<?php endif;?>
-			</div><!-- .site-branding -->
+						<?php
+						the_custom_logo();
+						?>
+					</div><!-- .site-branding -->
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-			</button>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<?php
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<?php
 					wp_nav_menu(
 						array(
 							'theme_location' => 'menu-1',
 							'menu_id' => 'primary-menu',
 							'menu_class' => 'navbar-nav',
+							'container_class'=> 'ms-auto',
+							'container'=> false,
+							'fallback_cb' => false,
+							'depth' => 2,
+							'items_wrap' => '<ul id="%1$s" class="navbar-nav ms-auto %2$s">%3$s</ul>',
+							'walker' => new bootstrap_5_wp_nav_menu_walker()
 						)
 					);
-				?>
-    		</div>
-		</nav>
-	</header>
+					?>
+				</div>
+			</nav>
+
+		</header>
+	</div>

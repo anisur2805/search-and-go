@@ -220,6 +220,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 /**
+ * Load Bootstrap Nav Walker
+ */
+require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
+/**
  * Redux Customizer File 
  */
 require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
