@@ -8,6 +8,9 @@
  *
  * @package Search_and_Go
  */
+if ( ! class_exists( 'Redux', false ) ) {
+	return;
+}
 global $sr_redux; 
 $sag_copyright_text = $sr_redux['copyright_text'];
 $logo = $sr_redux['footer_logo'];
@@ -19,7 +22,7 @@ $fb_url = $sr_redux['fb_url'];
 $footer_bg = $sr_redux['footer_bg_image'];
 
 
-var_dump($footer_bg);
+// var_dump($footer_bg);
 
 ?>
 

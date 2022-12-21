@@ -162,12 +162,21 @@ add_action( 'admin_enqueue_scripts', 'sg_image_uploader_enqueue' );
 function search_and_go_scripts() {
 	wp_enqueue_style( 'search-and-go-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'search-and-go-style', 'rtl', 'replace' );
-
+	
 	wp_enqueue_script( 'search-and-go-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_enqueue_script( 'jquery-auto-complete-ui', 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery') );
+	wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.min.js', array(), time(), true );
+	wp_enqueue_script( 'main-script-js', get_template_directory_uri() . '/js/main.js', array( 'jquery-auto-complete-ui', 'slick-js' ), time(), true );
+
+	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
+	wp_enqueue_style( 'auto-complete-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css' );
+	wp_enqueue_style( 'slick-min', get_template_directory_uri() . '/css/slick.min.css', array(), time() );
+	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css', array(), time() );
 }
 add_action( 'wp_enqueue_scripts', 'search_and_go_scripts' );
 
@@ -192,9 +201,9 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
- * Custom CPT.
+ * Custom Location CPT.
  */
-require get_template_directory() . '/inc/cpt.php';
+require get_template_directory() . '/inc/location-cpt.php';
 
 /**
  * Load Jetpack compatibility file.
@@ -211,7 +220,24 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 /**
+ * Load Bootstrap Nav Walker
+ */
+require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
+/**
  * Redux Customizer File 
  */
 require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
 require get_template_directory() . '/lib/redux-framework/sample/config.php';
+
+// Custom excerpt length 
+function sg_custom_excerpt_length( $length ) {
+	if ( get_post_type( get_the_ID() ) == 'location' ) {
+		return 30;
+	}
+}
+add_filter( 'excerpt_length', 'sg_custom_excerpt_length', 999 );
+
+function sag_default_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'sag_default_excerpt_length', 999 );

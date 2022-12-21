@@ -13,27 +13,40 @@ Redux::set_section(
     array(
         'title'      => esc_html__( 'Testimonials Section', 'your-textdomain-here' ),
         'id'         => 'testimonials-section',
-        'subsection' => true,
+        // 'subsection' => true,
         'fields'     => array(
+            array(
+                'id'      => 'testimonials-section-title',
+                'title'   => 'Section Title',
+                'type'    => 'text',
+                'default' => 'What Our Clients Say',
+            ),
+            array(
+                'id'      => 'testimonials-section-subtitle',
+                'title'   => 'Section Sub Title',
+                'type'    => 'textarea',
+                'default' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem atium doloremque laua iste natus error sit unde doloremque.',
+            ),
             array(
                 'id'     => 'testimonials-rep-id',
                 'title'  => 'Testimonials Group',
                 'type'   => 'repeater',
+                'group_values' => true,
                 'fields' => array(
                     array(
-                        'id'      => 'testimonials-title',
+                        'id'      => 'testimonial-title',
                         'title'   => 'Name',
                         'type'    => 'text',
                         'default' => 'What Our Clients Say',
                     ),
                     array(
-                        'id'      => 'testimonials-designation',
+                        'id'      => 'testimonial-designation',
                         'title'   => 'Designation',
                         'type'    => 'text',
                         'default' => 'Student at the Faculty of Applierd Art',
                     ),
                     array(
-                        'id'      => 'testimonials-content',
+                        'id'      => 'testimonial-content',
                         'title'   => 'Content',
                         'type'    => 'textarea',
                         'default' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem acantium laudan.',
