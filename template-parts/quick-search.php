@@ -27,7 +27,7 @@ $quick_searches    = $sr_redux['quick-easy-section-rep-id'];
                 }
             ?>
 
-            </div>
+        </div>
           
         </div>
     </div>

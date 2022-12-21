@@ -15,8 +15,27 @@ $terms = get_terms(
                 <form action="">
                 <div class="sg-filter-row">
                     <div class="sg-filter-row-keyword flex1 mb-20px">
-                        <!-- <h5>Keywords</h5> -->
                         <input type="text" name="keyword" id="keyword-hp" class="" placeholder="Keyword" value="" autocomplete="off">
+
+                        <?php 
+                            $url              = site_url().$_SERVER['REQUEST_URI'];
+                            $extract_url      = explode('/', $url);
+                            $location_item    = $extract_url[sizeof($extract_url)-2];
+                            $sg_location_args = array(
+                                'post_type'      => 'location',
+                                'post_status'    => 'publish',
+                            );
+                            $location_query =  new WP_Query( $sg_location_args );
+                            
+                            if($location_query->have_posts()){
+                                while ($location_query->have_posts()){
+                                    $location_query->the_post();
+                                    $keywords = get_the_term_list( $post->ID, 'keywords', '<ul><li>', '</li><li>', '</li></ul>' );
+                                }
+                                wp_reset_postdata();
+                            }
+                        ?>
+
                     </div>
                     <div class="sg-filter-row-category flex1 mb-20px">
                         <!-- <h5>Category</h5> -->

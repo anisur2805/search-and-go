@@ -7,6 +7,19 @@ function sg_location_cpt() {
         'supports' => array('title', 'editor', 'thumbnail'),
     );
     register_post_type('location', $args);
+
+    //register taxonomy for custom post tags
+    register_taxonomy( 
+        'keywords', //taxonomy 
+        'location', //post-type
+        array( 
+            'hierarchical'  => false, 
+            'label'         => __( 'Keywords','taxonomy general name'), 
+            'singular_name' => __( 'Keyword', 'taxonomy general name' ), 
+            'rewrite'       => true, 
+            'query_var'     => true 
+        )
+    );
 }
 add_action('init', 'sg_location_cpt');
 

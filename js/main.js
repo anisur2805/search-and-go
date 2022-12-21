@@ -2,9 +2,21 @@
   $(document).ready(function () {
     var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC"];
 
-    console.log($("#keyword-hp").val())
     $("#keyword-hp").autocomplete({
-        source: availableTags
-      });
+      source: availableTags
+    });
+
+    // Testimonial 
+    $('.testimonials-slider').slick({
+      dots: true,
+      speed: 500,
+      fade: false,
+      infinite: true,
+      slidesToShow: 4,
+      cssEase: 'linear',
+      arrows: false,
+      slidesToScroll: 4,
+    });
+
   });
 })(jQuery);
