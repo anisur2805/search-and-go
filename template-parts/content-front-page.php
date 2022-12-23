@@ -9,3 +9,5 @@ get_template_part('/template-parts/testimonials' );
 get_template_part('/template-parts/content', 'location' );
 
 get_template_part('/template-parts/share', 'experience' );
+
+get_template_part('/template-parts/discover', 'places' );
