@@ -15,6 +15,20 @@
       cssEase: 'ease',
       arrows: false,
       slidesToScroll: 2,
+    } ); 
+    
+    // Testimonial 
+    $( '.single-listing-gallery' ).slick( {
+      dots: false,
+      arrows: true,
+      speed: 500,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 2,
+      centerMode: true,
+      variableWidth: true,
+      prevArrow: '<button class="slick-prev slick-arrow" aria-label="Previous" type="button" style=""><i class="bi bi-arrow-left"></i></button>',
+      nextArrow: '<button class="slick-next slick-arrow" aria-label="Next" type="button" style=""><i class="bi bi-arrow-right"></i></button>'
     } );
 
     let wishlist_btns = document.querySelectorAll( '.sag-wishlist' )

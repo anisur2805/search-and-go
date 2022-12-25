@@ -7,23 +7,23 @@
         <div class="row single-posts">
             <?php
                 $args       = array(
-                    'post_type'         => 'post', 
+                    'post_type'         => 'sag_listing', 
                     'post_status'       => 'publish',
                     'posts_per_page'    => 3,
                     'tax_query' => array(
                         'relation' => 'OR',
                         array(
-                            'taxonomy' => 'category',
+                            'taxonomy' => 'sag_category',
                             'field'    => 'slug',
                             'terms'    => 'culture',
                         ),
                         array(
-                            'taxonomy' => 'category',
+                            'taxonomy' => 'sag_category',
                             'field'    => 'slug',
                             'terms'    => 'traveling',
                         ),
                         array(
-                            'taxonomy' => 'category',
+                            'taxonomy' => 'sag_category',
                             'field'    => 'slug',
                             'terms'    => 'lifestyle',
                         ),
@@ -40,16 +40,12 @@
                             }
                             
                             echo '<div class="single-post-item-content">';
-                                $the_cat    = get_the_category();
-                                $cat_link   = get_category_link( $the_cat[0]->cat_ID );
                                 ?>
-                                <p><a href="<?php echo $cat_link; ?>"><?php echo  $the_cat[0]->cat_name; ?></a></p>
                                 <?php echo '<h3><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3>';
                                 echo '<button data-wishlist-id="'.get_the_ID().'" class="sag-wishlist" href="#"><i class="bi bi-heart"></i></button>';
                                 ?>
                                 <p><?php the_excerpt(); ?> </p> 
                                 <?php
-                                printf( '<span>%s</span> by <a href="%s">%s</a>', get_the_date(), get_author_posts_url( get_the_author_meta( 'ID' )), get_the_author() );
                             echo '</div>';
                         echo '</div>';
                     endwhile;

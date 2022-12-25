@@ -1,7 +1,7 @@
 <?php
 $terms = get_terms(
     array( 
-        'taxonomy'  => 'listing_item',
+        'taxonomy'  => 'sag_location',
         'number'    => 5,
     )
 );
@@ -22,7 +22,7 @@ $terms = get_terms(
                             $extract_url      = explode('/', $url);
                             $location_item    = $extract_url[sizeof($extract_url)-2];
                             $sg_location_args = array(
-                                'post_type'      => 'location',
+                                'post_type'      => 'sag_listing',
                                 'post_status'    => 'publish',
                             );
                             $location_query =  new WP_Query( $sg_location_args );
@@ -30,7 +30,7 @@ $terms = get_terms(
                             if($location_query->have_posts()){
                                 while ($location_query->have_posts()){
                                     $location_query->the_post();
-                                    $keywords = get_the_term_list( $post->ID, 'keywords', '<ul><li>', '</li><li>', '</li></ul>' );
+                                    $keywords = get_the_term_list( $post->ID, 'sag_keywords', '<ul><li>', '</li><li>', '</li></ul>' );
                                 }
                                 wp_reset_postdata();
                             }
@@ -53,7 +53,7 @@ $terms = get_terms(
                             // 'show_count'       => 1,
                             'orderby'          => 'name',
                             // 'echo'             => 0,
-                            'taxonomy'         => 'listing_item',
+                            'taxonomy'         => 'sag_location',
                         );
                         wp_dropdown_categories( $args );
                         ?>
@@ -62,7 +62,7 @@ $terms = get_terms(
                             <option value="a">A</option>
                             <option value="b">B</option>
                         </select>
-                        <?php $categories = get_the_terms( $post->ID, 'listing_item' ); ?>
+                        <?php $categories = get_the_terms( $post->ID, 'sag_location' ); ?>
                     </div>
                 </div>
 

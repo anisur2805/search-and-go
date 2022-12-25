@@ -683,6 +683,18 @@ require_once Redux_Core::$dir . '../sample/sections/experience/experience.php';
 Redux::set_section(
 	$opt_name,
 	array(
+		'title'            => esc_html__( 'Social Profiles', 'search-and-replace' ),
+		'id'               => 'sag-social-profile',
+		'customizer_width' => '500px',
+		'icon'             => 'dashicons dashicons-share',
+	)
+); 
+require_once Redux_Core::$dir . '../sample/sections/socials/socials.php';
+
+// -> START Footer.
+Redux::set_section(
+	$opt_name,
+	array(
 		'title'            => esc_html__( 'Footer', 'search-and-replace' ),
 		'id'               => 'footer',
 		'customizer_width' => '500px',

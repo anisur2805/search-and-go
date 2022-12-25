@@ -7,7 +7,7 @@
 get_header();
 
 if (have_posts()): while (have_posts()): the_post();
-        get_template_part('template-parts/listing', 'item');
+        get_template_part('template-parts/sag_location');
     endwhile;
     wp_reset_postdata();
 endif;

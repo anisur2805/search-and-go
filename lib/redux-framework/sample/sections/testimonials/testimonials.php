@@ -13,7 +13,7 @@ Redux::set_section(
     array(
         'title'      => esc_html__( 'Testimonials Section', 'your-textdomain-here' ),
         'id'         => 'testimonials-section',
-        // 'subsection' => true,
+        'subsection' => true,
         'fields'     => array(
             array(
                 'id'      => 'testimonials-section-title',

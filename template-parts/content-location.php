@@ -10,7 +10,7 @@
                 <?php
                 $terms = get_terms(
                     array( 
-                        'taxonomy'  => 'listing_item',
+                        'taxonomy'  => 'sag_location',
                         'number'    => 7,
                     )
                 );

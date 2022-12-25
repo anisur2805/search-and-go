@@ -141,17 +141,19 @@ add_action( 'widgets_init', 'search_and_go_widgets_init' );
  */
 function sg_image_uploader_enqueue() {
     global $typenow;
-    if( ($typenow == 'location') ) {
+    if( ($typenow == 'sag_listing') ) {
         wp_enqueue_media();
 
-        wp_register_script( 'sg-meta-img', get_template_directory_uri() . '/js/media.js', array( 'jquery' ) );
-        wp_localize_script( 'sg-meta-img', 'sg_meta_image',
+		wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css', array(), time() );
+		wp_enqueue_style( 'sag-admin-css', get_template_directory_uri() . '/css/sag-admin.css', array(), time() );
+        wp_register_script( 'sg-admin-js', get_template_directory_uri() . '/js/sag-admin.js', array( 'jquery' ) );
+        wp_localize_script( 'sg-admin-js', 'sg_meta_image',
             array(
                 'title' => 'Upload an Image',
                 'button' => 'Use this Image',
             )
         );
-        wp_enqueue_script( 'sg-meta-img' );
+        wp_enqueue_script( 'sg-admin-js' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'sg_image_uploader_enqueue' );
@@ -207,7 +209,7 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Custom Location CPT.
  */
-require get_template_directory() . '/inc/location-cpt.php';
+require get_template_directory() . '/inc/sag-listing-cpt.php';
 
 /**
  * Load Jetpack compatibility file.
@@ -224,6 +226,12 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 /**
+ * Load TGM
+ */
+require_once get_template_directory()."/lib/tgm/class-tgm-plugin-activation.php";
+require_once get_template_directory()."/lib/tgm/index.php";
+
+/**
  * Load Bootstrap Nav Walker
  */
 require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
@@ -235,7 +243,8 @@ require get_template_directory() . '/lib/redux-framework/sample/config.php';
 
 // Custom excerpt length 
 function sg_custom_excerpt_length( $length ) {
-	if ( get_post_type( get_the_ID() ) == 'location' ) {
+	if ( get_post_type( get_the_ID() ) == 'sag_listing' ) {
+		print("You must print");
 		return 30;
 	}
 }
@@ -247,7 +256,7 @@ function sag_default_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'sag_default_excerpt_length', 999 );
 
 // Add custom post meta for wishlist
-add_action('add_meta_boxes', 'sag_wishlist_add_meta_box');
+// add_action('add_meta_boxes', 'sag_wishlist_add_meta_box');
 function sag_wishlist_add_meta_box( $post_type ){
 	$post_types = array('post', 'page');
 
@@ -262,7 +271,7 @@ function sag_wishlist_add_meta_box( $post_type ){
 		}
 }
 
-add_action('save_post', 'sag_wishlist_save_post');
+// add_action('save_post', 'sag_wishlist_save_post');
 function sag_wishlist_save_post($post_id){
 	if ( ! isset( $_POST['sag_wishlist_mb_nonce'] ) ) {
 		return $post_id;
@@ -294,8 +303,8 @@ function sag_wishlist_cb($post){
 	<?php
 }
 
-add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
-add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
+// add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
+// add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
 function sag_wishlist_action(){
 	$arpc_name  = isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : '';
 	var_dump($arpc_name);

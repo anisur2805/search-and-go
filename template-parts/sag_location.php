@@ -49,14 +49,18 @@
                             $extract_url    = explode('/', $url);
                             $location_item  = $extract_url[sizeof($extract_url)-2];
                             
+                            echo '<pre>';
+                                  print_r( $location_item );
+                            echo '</pre>';
+                            
                             $sg_location_args = array(
-                                'post_type'      => 'location',
+                                'post_type'      => 'sag_listing',
                                 'post_status'    => 'publish',
-                                // 'posts_per_page' => -1,
+                                'posts_per_page' => -1,
                                 // 'order'          => 'asc',
                                 'tax_query' => array(
                                     array(
-                                        'taxonomy' => 'listing_item',
+                                        'taxonomy' => 'sag_location',
                                         'field'    => 'slug',
                                         'terms'    => $location_item,
                                     ),
