@@ -11191,12 +11191,6 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.single-location-wrapper .sag-container {
-  position: relative;
-  margin: -80px auto 0;
-  padding: 60px;
-  background: #fff;
-}
 .single-location-wrapper img {
   max-width: 100%;
   height: 100%;
@@ -11248,6 +11242,13 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
 .single-location-wrapper ul.sag-tags a:hover {
   background: #1ab5c1;
   color: var(--sg-white) !important;
+}
+
+.sag-container {
+  position: relative;
+  margin: -80px auto 0;
+  padding: 60px;
+  background: #fff;
 }
 
 .sag-video {
@@ -11504,6 +11505,7 @@ footer .footer-bottom-holder {
   padding: 25px 0;
   color: var(--sg-white);
   z-index: 1;
+  text-align: center;
 }
 footer .footer-bottom-holder::before {
   content: "";
@@ -11518,7 +11520,6 @@ footer .footer-bottom-holder::before {
 footer .footer-bottom-holder p {
   margin: 0;
   color: inherit;
-  text-align: center;
   color: var(--sg-white);
   font-size: 16px;
 }
@@ -11617,4 +11618,43 @@ footer::before {
 }
 .sag-socials-share .sag-socials:hover ul i {
   color: var(--sg-white);
+}
+
+.sag-blog-banner {
+  height: 337px;
+  background: url(https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/blog-title.jpg) no-repeat center center/cover;
+}
+
+.sag-gallery-wrapper .sag-blog-topbar {
+  padding: 10px 0 40px 0;
+}
+.sag-gallery-wrapper .sag-masonry-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.sag-gallery-wrapper h3, .sag-gallery-wrapper .h3 {
+  font-size: 22px;
+  color: var(--sg-black);
+  margin: 20px 0 10px;
+}
+.sag-gallery-wrapper h3 a, .sag-gallery-wrapper .h3 a {
+  color: inherit !important;
+}
+.sag-gallery-wrapper p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+.sag-gallery-wrapper .sag-button {
+  background-color: #1ab5c1;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: capitalize;
+  padding: 5px 15px;
+  display: inline-block;
+  border: 2px solid #1ab5c1;
+  color: var(--sg-white) !important;
+}
+.sag-gallery-wrapper .sag-button:hover {
+  background-color: transparent;
+  color: #1ab5c1 !important;
 }/*# sourceMappingURL=main.css.map */

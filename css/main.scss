@@ -474,14 +474,6 @@ section#banner {
 		background-repeat: no-repeat;
 	}
 
-	.sag-container {
-		// max-width: 1200px;
-        position: relative;
-		margin: -80px auto 0;
-		padding: 60px;
-		background: #fff;
-	}
-
 	img {
 		max-width: 100%;
 		// height: 327px;
@@ -538,6 +530,15 @@ section#banner {
 			}
 		}
 	}
+}
+
+// container 
+.sag-container {
+    // max-width: 1200px;
+    position: relative;
+    margin: -80px auto 0;
+    padding: 60px;
+    background: #fff;
 }
 
 // Sinle Post Video
@@ -818,6 +819,7 @@ footer {
         padding: 25px 0;
         color: var(--sg-white);
         z-index: 1;
+        text-align: center;
 		&::before {
             content: '';
 			background-color: rgba(0, 0, 0, 0.75);
@@ -831,7 +833,6 @@ footer {
 		p {
 			margin: 0;
 			color: inherit;
-			text-align: center;
             color: var(--sg-white);
             font-size: 16px;
 		}
@@ -936,4 +937,54 @@ footer {
 			}
 		}
 	}
+}
+
+// Blog Banner
+.sag-blog-banner {
+    height: 337px;
+    background: url(https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/blog-title.jpg) no-repeat center center/ cover;
+}
+
+// Blog Gallery
+.sag-gallery-wrapper {
+    .sag-blog-topbar {
+        padding: 10px 0 40px 0;
+    }
+    .sag-gallery-masonry-wrapper {
+        .sag-gallery{
+            
+        } 
+        
+        
+    }
+    .sag-masonry-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    h3 {
+        font-size: 22px;
+        color: var(--sg-black);
+        margin: 20px 0 10px;
+        a {
+            color: inherit !important;
+        }
+    }
+    p {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    .sag-button {
+        background-color: $primary;
+        border-radius: 5px;
+        font-size: 16px;
+        text-transform: capitalize;
+        padding: 5px 15px;
+        display: inline-block;
+        border: 2px solid $primary;
+        color: var(--sg-white) !important;
+        &:hover {
+            background-color: transparent;
+            color: $primary !important;
+        }
+    }
 }
