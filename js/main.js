@@ -1,4 +1,4 @@
-( function ( $ ) {
+;(function( $ ) {
   $( document ).ready( function () {
     var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC"];
 
@@ -15,8 +15,8 @@
       cssEase: 'ease',
       arrows: false,
       slidesToScroll: 2,
-    } ); 
-    
+    } );
+
     // Testimonial 
     $( '.single-listing-gallery' ).slick( {
       dots: false,
@@ -57,5 +57,17 @@
       } )
 
     } );
+
+    // Back to top
+    /**
+ * back to top
+ */
+    var backTopBtn = $( '#back-to-top' );
+      if ( $( window ).scrollTop() > 450 ) {
+        console.log( "yehe" )
+        backTopBtn.addClass( 'show' );
+      } else {
+        backTopBtn.removeClass( 'show' );
+      }
   } );
 } )( jQuery );

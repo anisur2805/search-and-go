@@ -70,6 +70,9 @@ $footer_bg = $sr_redux['footer_bg_image'];
 				</div><!-- .site-info -->
 			</div>
 		</div>
+		<div class="back-to-top" id="back-to-top">
+			<i class="bi bi-arrow-up-short"></i>
+		</div>	
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

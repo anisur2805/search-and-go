@@ -11468,6 +11468,17 @@ footer .footer-top-holder .footer-top-holder-wrapper .search-form span {
   color: #1ab5c1;
   font-size: inherit;
 }
+@media (max-width: 767px) {
+  footer .footer-top-holder .footer-top-holder-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+@media (max-width: 767px) {
+  footer .footer-top-holder {
+    padding: 30px 0;
+  }
+}
 footer .footer-bottom-holder {
   position: relative;
   padding: 25px 0;
@@ -11505,4 +11516,35 @@ footer::before {
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.75);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #1ab5c1;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s;
+  transform: translateY(10px);
+}
+.back-to-top.show {
+  display: block;
+  transform: translateY(0px);
+  opacity: 1;
+  visibility: visible;
+}
+.back-to-top i {
+  font-size: 40px;
+  color: var(--sg-white);
+}
+.back-to-top:hover i {
+  color: var(--sg-black);
 }/*# sourceMappingURL=main.css.map */
