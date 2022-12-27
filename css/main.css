@@ -11192,7 +11192,7 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   background-repeat: no-repeat;
 }
 .single-location-wrapper .sag-container {
-  max-width: 1200px;
+  position: relative;
   margin: -80px auto 0;
   padding: 60px;
   background: #fff;
@@ -11403,10 +11403,30 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
 
 .sag-recommended-post .feature-img {
   position: relative;
+  margin-bottom: 20px;
 }
-.sag-recommended-post .feature-img div {
+.sag-recommended-post .feature-img .feature-title-cat {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.sag-recommended-post .feature-img .feature-title-cat .feature-title {
+  font-size: 18px;
+  color: var(--sg-white) !important;
+}
+.sag-recommended-post .feature-img .feature-title-cat i {
+  padding: 6px;
+  border-radius: 50%;
+  background: #1ab5c1;
+  width: 45px;
+  height: 45px;
+  color: var(--sg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 footer {
@@ -11544,7 +11564,57 @@ footer::before {
 .back-to-top i {
   font-size: 40px;
   color: var(--sg-white);
+  transition: all 0.3s;
 }
 .back-to-top:hover i {
   color: var(--sg-black);
+}
+
+.sag-socials-share {
+  position: absolute;
+  top: -40px;
+  right: 0;
+}
+.sag-socials-share .sag-socials {
+  border-radius: 3px;
+  padding: 4px 15px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.sag-socials-share .sag-socials span {
+  font-size: 15px;
+  color: var(--sg-black);
+}
+.sag-socials-share .sag-socials span i {
+  margin-right: 5px;
+  color: var(--sg-black);
+  font-size: 15px;
+}
+.sag-socials-share .sag-socials ul {
+  margin: 0 0 0 -170px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.sag-socials-share .sag-socials:hover {
+  background: #1ab5c1;
+}
+.sag-socials-share .sag-socials:hover span {
+  color: var(--sg-white);
+}
+.sag-socials-share .sag-socials:hover span i {
+  color: var(--sg-white);
+}
+.sag-socials-share .sag-socials:hover ul {
+  opacity: 1;
+  margin: 0 0 0 15px;
+}
+.sag-socials-share .sag-socials:hover ul i {
+  color: var(--sg-white);
 }/*# sourceMappingURL=main.css.map */

@@ -1,4 +1,4 @@
-;(function( $ ) {
+; ( function ( $ ) {
   $( document ).ready( function () {
     var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC"];
 
@@ -63,11 +63,16 @@
  * back to top
  */
     var backTopBtn = $( '#back-to-top' );
-      if ( $( window ).scrollTop() > 450 ) {
-        console.log( "yehe" )
-        backTopBtn.addClass( 'show' );
-      } else {
-        backTopBtn.removeClass( 'show' );
-      }
+    if ( $( window ).scrollTop() > 450 ) {
+      backTopBtn.addClass( 'show' );
+    } else {
+      backTopBtn.removeClass( 'show' );
+    }
+
+    backTopBtn.on( 'click', function ( e ) {
+      e.preventDefault();
+      $( 'html, body' ).animate( { scrollTop: 0 }, '300' );
+    } );
+
   } );
 } )( jQuery );

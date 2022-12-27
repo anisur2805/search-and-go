@@ -475,7 +475,8 @@ section#banner {
 	}
 
 	.sag-container {
-		max-width: 1200px;
+		// max-width: 1200px;
+        position: relative;
 		margin: -80px auto 0;
 		padding: 60px;
 		background: #fff;
@@ -714,9 +715,30 @@ section#banner {
 .sag-recommended-post {
 	.feature-img {
 		position: relative;
-		div {
+        margin-bottom: 20px;
+		.feature-title-cat {
 			position: absolute;
-			bottom: 0;
+			bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            .feature-title {
+                font-size: 18px;
+                color: var(--sg-white) !important;
+
+            }
+            i {
+                padding: 6px;
+                border-radius: 50%;
+                background: $primary;
+                width: 45px;
+                height: 45px;
+                color: var(--sg-white);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 		}
 	}
 }
@@ -858,8 +880,60 @@ footer {
     i {
         font-size: 40px;
         color: var(--sg-white);
+        transition: all .3s;
     }
     &:hover i {
         color: var(--sg-black);
     }
+}
+
+
+// Socials Share
+.sag-socials-share {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	.sag-socials {
+		border-radius: 3px;
+		padding: 4px 15px;
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		display: flex;
+		align-items: center;
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		background-color: rgba(255, 255, 255, 0.5);
+		overflow: hidden;
+		transition: all 0.3s;
+		span {
+			font-size: 15px;
+			color: var(--sg-black);
+			i {
+				margin-right: 5px;
+				color: var(--sg-black);
+				font-size: 15px;
+			}
+		}
+		ul {
+			margin: 0 0 0 -170px;
+			opacity: 0;
+			transition: all 0.3s;
+		}
+		&:hover {
+			background: $primary;
+			span {
+				color: var(--sg-white);
+				i {
+					color: var(--sg-white);
+				}
+			}
+			ul {
+				opacity: 1;
+				margin: 0 0 0 15px;
+                i {
+					color: var(--sg-white);
+				}
+			}
+		}
+	}
 }

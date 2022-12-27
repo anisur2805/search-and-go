@@ -315,3 +315,22 @@ function sag_wishlist_action(){
 	
 	die();
 }
+
+// Socials share
+function sag_socials(){
+	global $sr_redux;
+	$fb_url = $sr_redux['facebook_url'];
+	$tt_url = $sr_redux['twitter_url'];
+	$ig_url = $sr_redux['instagram_url'];
+	$li_url = $sr_redux['linkedin_url'];
+	$vimeo_url = $sr_redux['vimeo_url'];
+	?>
+	<ul>
+		<li><a href="<?php echo esc_url($fb_url); ?>"><i class="fa fa-facebook"></i></a></li>
+		<li><a href="<?php echo esc_url($tt_url); ?>"><i class="fa fa-twitter"></i></a></li>
+		<li><a href="<?php echo esc_url($ig_url); ?>" href="#"><i class="fa fa-instagram"></i></a></li>
+		<li><a href="<?php echo esc_url($li_url); ?>" href="#"><i class="fa fa-linkedin"></i></a></li>
+		<li><a href="<?php echo esc_url($vimeo_url); ?>" href="#"><i class="fa fa-vimeo"></i></a></li>
+	</ul>
+	<?php
+}

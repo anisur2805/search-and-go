@@ -8,7 +8,14 @@ get_header(); ?>
     }
     ?>
 
-    <div class="sag-container">
+    <div class="sag-container container">
+
+    <div class="sag-socials-share">
+        <div class="sag-socials">
+            <span><i class="fas fa-share"></i>Share</span> <?php echo sag_socials(); ?>
+        </div>
+    </div>
+
         <?php
         $the_cat = get_the_category();
         ?>
@@ -136,13 +143,7 @@ get_header(); ?>
                 ?>
                 <div class="sag-listing-socials sag-listing-sidebar-item">
                     <h4 class="single-listing-title">Social Profiles</h4>
-                    <ul>
-                        <li><a href="<?php echo esc_url($fb_url); ?>"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="<?php echo esc_url($tt_url); ?>"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                    </ul>
+                    <?php echo sag_socials(); ?>
                 </div>
                 
                 <?php if (class_exists('ACF')) { ?>
@@ -185,11 +186,11 @@ get_header(); ?>
                         <li>
                             <div class="feature-img">
                                 <?php if(has_post_thumbnail()) the_post_thumbnail(); ?>
-                                <div class="">
+                                <div class="feature-title-cat">
                                     <a href="<?php the_permalink(); ?>">
                                         <i class="fa fa-shopping-cart"></i>
                                     </a>
-                                    <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                                    <a class="feature-title" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
                                 </div>
                             </div>
                             <?php the_excerpt(); ?>
