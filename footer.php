@@ -22,11 +22,11 @@ $fb_url = $sr_redux['fb_url'];
 $footer_bg = $sr_redux['footer_bg_image'];
 
 
-// var_dump($footer_bg);
+// var_dump($footer_bg['background-color']);
 
 ?>
 
-	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo $footer_bg['background-image'] ?>);background-color: <?php echo $footer_bg['background-color'] ?>;background-position: <?php echo $footer_bg['background-position'] ?>;background-size: <?php echo $footer_bg['background-size'] ?>;">
+	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo $footer_bg['background-image'] ?>);background-position: <?php echo $footer_bg['background-position'] ?>;background-size: <?php echo $footer_bg['background-size'] ?>;">
 		<div class="footer-top-holder">
 			<div class="container">
 				<div class="footer-top-holder-wrapper">
@@ -57,7 +57,7 @@ $footer_bg = $sr_redux['footer_bg_image'];
 					<div class="column column3">
 						<div class="search-form">
 							<span class="fa fa-search"></span>
-							<input type="search" />
+							<input placeholder="search..." type="search" />
 						</div>
 					</div>
 				</div>
