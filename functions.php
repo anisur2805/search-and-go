@@ -172,10 +172,14 @@ function search_and_go_scripts() {
 	wp_enqueue_script( 'jquery-auto-complete-ui', 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery') );
 	wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.min.js', array(), time(), true );
 	wp_enqueue_script( 'main-script-js', get_template_directory_uri() . '/js/main.js', array( 'jquery-auto-complete-ui', 'slick-js' ), time(), true );
+	wp_localize_script( 'main-script-js', 'wishlist', array(
+		'ajaxUrl' => admin_url('admin-ajax.php')
+	));
 
 	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
 	wp_enqueue_style( 'auto-complete-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css' );
 	wp_enqueue_style( 'slick-min', get_template_directory_uri() . '/css/slick.min.css', array(), time() );
+	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css', array(), time() );
 }
 add_action( 'wp_enqueue_scripts', 'search_and_go_scripts' );
@@ -241,3 +245,64 @@ function sag_default_excerpt_length( $length ) {
 	return 20;
 }
 add_filter( 'excerpt_length', 'sag_default_excerpt_length', 999 );
+
+// Add custom post meta for wishlist
+add_action('add_meta_boxes', 'sag_wishlist_add_meta_box');
+function sag_wishlist_add_meta_box( $post_type ){
+	$post_types = array('post', 'page');
+
+	if( in_array( $post_type, $post_types ) ) {
+		add_meta_box(
+			'sag_wishlist', 
+			'Wishlist', 
+			'sag_wishlist_cb', 
+			$post_type,
+			'advanced',
+			'high' );
+		}
+}
+
+add_action('save_post', 'sag_wishlist_save_post');
+function sag_wishlist_save_post($post_id){
+	if ( ! isset( $_POST['sag_wishlist_mb_nonce'] ) ) {
+		return $post_id;
+	}
+
+	$nonce = $_POST['sag_wishlist_mb_nonce'];
+
+	if( ! wp_verify_nonce( $nonce, 'sag_wishlist_mb')) {
+		return $post_id;
+	}
+
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return $post_id;
+	}
+
+	$sag_wishlist = sanitize_text_field( $_POST['sag_wishlist']);
+	update_post_meta($post_id, '_sag_wishlist_key', $sag_wishlist );
+}
+
+function sag_wishlist_cb($post){
+	wp_nonce_field('sag_wishlist_mb', 'sag_wishlist_mb_nonce');
+
+	$value = get_post_meta( $post->ID, '_sag_wishlist_key', true ); ?>
+	<label for="sag_wishlist">
+		<?php _e('In wishlist? ', 'search-and-go') ?>
+	</label> 
+	<input type="checkbox" name="custom_checkbox" id="custom_checkbox" value="1" <?php checked( $value, 1 ); ?> />
+
+	<?php
+}
+
+add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
+add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
+function sag_wishlist_action(){
+	$arpc_name  = isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : '';
+	var_dump($arpc_name);
+
+	$sag_wishlist = sanitize_text_field( $_POST['sag_wishlist']);
+	// update_post_meta($post_id, '_sag_wishlist_key', $sag_wishlist );
+	update_post_meta(253, '_sag_wishlist_key', $sag_wishlist );
+	
+	die();
+}

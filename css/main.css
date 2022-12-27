@@ -10614,6 +10614,10 @@ li {
   margin-right: auto;
 }
 
+.bg-gray-300 {
+  background: #ddd !important;
+}
+
 .mb-40px {
   margin-bottom: 40px;
 }
@@ -10942,19 +10946,48 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   font-style: italic;
   font-weight: 700;
 }
-.testimonials-wrapper ul.slick-dots {
-  display: none !important;
-}
 
+.discover-places,
 .share-experience {
   padding: 80px 0;
-  background: #eee;
+  background: #fff;
 }
-.share-experience .single-posts {
+.discover-places .single-posts .single-post-item,
+.share-experience .single-posts .single-post-item {
   margin-top: 20px;
 }
-.share-experience .single-posts img {
+.discover-places .single-posts .single-post-item .single-post-item-content,
+.share-experience .single-posts .single-post-item .single-post-item-content {
+  position: relative;
+}
+.discover-places .single-posts .single-post-item img,
+.share-experience .single-posts .single-post-item img {
   max-width: 100%;
   height: auto;
   margin-bottom: 15px;
+}
+
+.sag-wishlist {
+  position: absolute;
+  top: -4px;
+  right: 10px;
+  background: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  border: 0;
+}
+.sag-wishlist.wishlisted {
+  background: #1e73be;
+}
+.sag-wishlist.wishlisted i::before {
+  color: #fff;
+  content: "\f415";
 }/*# sourceMappingURL=main.css.map */
