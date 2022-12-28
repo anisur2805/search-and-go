@@ -11691,4 +11691,52 @@ footer::before {
 .sag-load-posts a:hover {
   color: #1ab5c1 !important;
   background: transparent;
+}
+
+.sag-pricing-container .sag-pricing {
+  display: flex;
+  gap: 40px;
+}
+.sag-pricing-container .sag-pricing .sag-single-pricing {
+  flex: 1;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}
+.sag-pricing-container .sag-pricing .sag-pricing-header {
+  padding: 30px;
+  text-align: center;
+}
+.sag-pricing-container .sag-pricing .sag-pricing-header span {
+  font-size: 60px;
+  color: #1ab5c1;
+  font-weight: 500;
+  line-height: 60px;
+}
+.sag-pricing-container ul {
+  padding: 0;
+}
+.sag-pricing-container ul li {
+  font-size: 18px;
+  line-height: 40px;
+  padding: 8px 30px;
+  background-color: var(--sg-white);
+}
+.sag-pricing-container ul li i {
+  margin-right: 10px;
+  color: #1ab5c1;
+}
+.sag-pricing-container ul li:nth-child(odd) {
+  background: #ddd;
+}
+.sag-pricing-container ul.sag-gold-list li {
+  background: transparent;
+  line-height: 20px;
+  padding-left: 0;
+}
+.sag-pricing-container .sag-button {
+  display: block;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 10px auto 20px;
 }/*# sourceMappingURL=main.css.map */

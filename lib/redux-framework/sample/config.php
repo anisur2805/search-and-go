@@ -643,6 +643,19 @@ Redux::set_section(
 
 require_once Redux_Core::$dir . '../sample/sections/testimonials/testimonials.php';
 
+// -> START Pricing.
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Pricing', 'search-and-replace' ),
+		'id'               => 'pricing_sec_id',
+		'customizer_width' => '500px',
+		'icon'             => 'el el-money',
+	)
+);
+
+require_once Redux_Core::$dir . '../sample/sections/pricing/pricing.php';
+
 // -> START CTA.
 Redux::set_section(
 	$opt_name,

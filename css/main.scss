@@ -1029,3 +1029,64 @@ footer {
 		}
 	}
 }
+
+
+// Pricing 
+.sag-pricing-container {
+	.sag-pricing {
+		display: flex;
+		gap: 40px;
+
+		.sag-single-pricing {
+			flex: 1;
+			border: 1px solid #ddd;
+			margin: 20px 0;
+		}
+
+		.sag-pricing-header {
+			padding: 30px;
+			text-align: center;
+
+			span {
+				font-size: 60px;
+				color: $primary;
+				font-weight: 500;
+				line-height: 60px;
+			}
+		}
+	}
+	
+		ul {
+			padding: 0;
+	
+			li {
+				font-size: 18px;
+				line-height: 40px;
+				padding: 8px 30px;
+				background-color: var(--sg-white);
+	
+				i {
+					margin-right: 10px;
+					color: $primary;
+				}
+	
+				&:nth-child(odd) {
+					background: #ddd;
+				}
+			}
+	
+			&.sag-gold-list {
+				li {
+					background: transparent;
+					line-height: 20px;
+					padding-left: 0;
+				}
+			}
+		}
+
+	.sag-button {
+		display: block;
+		max-width: fit-content;
+		margin: 10px auto 20px;
+	}
+}
