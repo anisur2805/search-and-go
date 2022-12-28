@@ -958,8 +958,8 @@ footer {
         
     }
     .sag-masonry-gallery {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        // display: grid;
+        // grid-template-columns: repeat(3, 1fr);
     }
     h3 {
         font-size: 22px;
@@ -971,7 +971,7 @@ footer {
     }
     p {
         font-size: 16px;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
     .sag-button {
         background-color: $primary;
@@ -987,4 +987,45 @@ footer {
             color: $primary !important;
         }
     }
+}
+
+// Masonry gallery
+.grid {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}  
+	.grid-sizer,
+	.grid-item { 
+		width: calc( 33.333% - 10px);
+		float: left;
+		padding: 5px;
+		margin-bottom: 15px;
+		img {
+			display: block;
+			width: 100%;
+		}
+	} 
+}
+
+// Load MOre Posts
+.sag-load-posts {
+	position: relative;
+	margin: 20px auto;
+	text-align: center;
+	a {
+		color: var(--sg-white) !important;
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 500;
+		background: $primary;
+		border: 2px solid $primary;
+		padding: 8px 16px;
+		border-radius: 6px;
+		&:hover {
+			color: $primary !important;
+			background: transparent;
+		}
+	}
 }

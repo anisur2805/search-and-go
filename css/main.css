@@ -11628,10 +11628,6 @@ footer::before {
 .sag-gallery-wrapper .sag-blog-topbar {
   padding: 10px 0 40px 0;
 }
-.sag-gallery-wrapper .sag-masonry-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
 .sag-gallery-wrapper h3, .sag-gallery-wrapper .h3 {
   font-size: 22px;
   color: var(--sg-black);
@@ -11642,7 +11638,7 @@ footer::before {
 }
 .sag-gallery-wrapper p {
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .sag-gallery-wrapper .sag-button {
   background-color: #1ab5c1;
@@ -11657,4 +11653,42 @@ footer::before {
 .sag-gallery-wrapper .sag-button:hover {
   background-color: transparent;
   color: #1ab5c1 !important;
+}
+
+.grid:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.grid .grid-sizer,
+.grid .grid-item {
+  width: calc(33.333% - 10px);
+  float: left;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+.grid .grid-sizer img,
+.grid .grid-item img {
+  display: block;
+  width: 100%;
+}
+
+.sag-load-posts {
+  position: relative;
+  margin: 20px auto;
+  text-align: center;
+}
+.sag-load-posts a {
+  color: var(--sg-white) !important;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  background: #1ab5c1;
+  border: 2px solid #1ab5c1;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+.sag-load-posts a:hover {
+  color: #1ab5c1 !important;
+  background: transparent;
 }/*# sourceMappingURL=main.css.map */

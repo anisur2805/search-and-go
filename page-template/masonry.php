@@ -20,32 +20,39 @@ get_header();
         </div>
 
         <div class="sag-gallery sag-masonry-gallery">
-            <?php
-            $args = array(
-                'post_type' => 'sag_listing',
-                'posts_per_page' => -1,
-            );
-            $sag_listings = get_posts($args);
+            <div class="grid">
+                <div class="grid-sizer"></div>
+                <?php
+                $args = array(
+                    'post_type' => 'sag_listing',
+                    'posts_per_page' => -1,
+                );
+                $sag_listings = get_posts($args);
 
-            if ($sag_listings) {
-                
-                foreach ($sag_listings as $sag_listing) {
-                    echo '<div class="sag-gallery-item sag-masonry-gallery-item">';
-                    if (has_post_thumbnail($sag_listing->ID)) {
-                        echo get_the_post_thumbnail($sag_listing->ID, 'medium');
+                if ($sag_listings) {
+                    
+                    foreach ($sag_listings as $sag_listing) {
+                        echo '<div class="sag-gallery-item sag-masonry-gallery-item grid-item">';
+                        if (has_post_thumbnail($sag_listing->ID)) {
+                            echo get_the_post_thumbnail($sag_listing->ID, 'medium');
+                        }
+                        echo '<h3><a href="' . get_the_permalink($sag_listing->ID) . '">' . $sag_listing->post_title . '</a></h3>';
+                        echo '<p>' . $sag_listing->post_excerpt . '</p>';
+                        echo '<a class="sag-button sag-read-more" href="' . get_permalink( $sag_listing->ID ) . '">' . __('Read more', 'search-and-replace') . '</a>';
+                        echo '</div>';
                     }
-                    echo '<h3><a href="' . get_the_permalink($sag_listing->ID) . '">' . $sag_listing->post_title . '</a></h3>';
-                    echo '<p>' . $sag_listing->post_excerpt . '</p>';
-                    echo '<a class="sag-button sag-read-more" href="' . get_permalink( $sag_listing->ID ) . '">' . __('Read more', 'search-and-replace') . '</a>';
-                    echo '</div>';
+                } else {
+                    // No posts were found
+                    echo '<p>No posts were found.</p>';
                 }
-            } else {
-                // No posts were found
-                echo '<p>No posts were found.</p>';
-            }
-            ?>
-
+                ?>
+            </div>
         </div>
+
+        <div class="sag-load-posts">
+            <?php printf('<a href="#">%s</a>', __('Load More', 'search-and-go') ); ?>
+        </div>
+
     </div>
 </main><!-- #main -->
 
