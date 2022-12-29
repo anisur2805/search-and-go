@@ -49,8 +49,9 @@ Redux::set_section(
                     array(
                         'id'      => 'pricing-content',
                         'title'   => 'Content',
-                        'type'    => 'text',
-                        'default' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem acantium laudan.',
+                        'type'    => 'textarea',
+                        'default' => "Sed ut perspiciatis \nunde omnis iste natus error\n sit voluptatem acantium laudan.",
+                        "description" => 'Add item in new line, one line is one item'
                     ),
                     array(
                         'id'          => 'pricing-url',

@@ -5,10 +5,13 @@
  */
 
 get_header();
+global $sr_redux;
+$pricing_id     = $sr_redux['pricing-rep-id'];
+unset($pricing_id['redux_repeater_data']);
 ?>
 <main id="primary" class="site-main sag-gallery-wrapper sag-gallery-masonry-wrapper">
-    <div class="sag-blog-banner"></div> 
-    
+    <div class="sag-blog-banner"></div>
+
     <div class="container sag-container sag-pricing-container">
 
         <div class="sag-blog-topbar text-center">
@@ -21,27 +24,45 @@ get_header();
         </div>
 
         <div class="sag-pricing-wrapper">
-            <div class="sag-pricing">
-                <div class="sag-single-pricing">
-                    <div class="sag-pricing-header">
-                        <h3>Basic Package</h3>
-                        <span class="sag-price">0 $</span>
+            <div class="sag-pricing row">
+                <?php
+
+                $count = count($pricing_id['pricing-title']);
+                for ($i = 0; $i < $count; $i++) {
+                    $featured = ($pricing_id['pricing-featured'][$i] == 1) ? ' is-featured ' : '';
+                ?>
+                    <div class="sag-single-pricing col-md-4 col-sm-6 <?php echo $featured; ?>">
+                        <div class="sag-single-pricing-inner">
+                            <?php if ($featured) : ?>
+                                <span class="featured-content">
+                                    Most Popular
+                                </span>
+                            <?php endif; ?>
+                            <div class="sag-pricing-header">
+                                <h3><?php echo $pricing_id['pricing-title'][$i]; ?></h3>
+                                <span class="sag-price"><?php echo $pricing_id['pricing-amount'][$i]; ?> $</span>
+                            </div>
+                            <?php
+                            $content = $pricing_id['pricing-content'][$i];
+                            $newContent = explode("\n", $content);
+                            ?>
+                            <ul>
+                                <?php foreach ($newContent as $val) : ?>
+                                    <li><i class="bi bi-check-circle"></i><?php echo $val; ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <a href="#" class="sag-button"><?php _e('Purchase', 'search-and-go'); ?></a>
+                        </div>
                     </div>
-                    <ul>
-                        <li><i class="bi bi-check-circle"></i>One Listing</li>
-                        <li><i class="bi bi-check-circle"></i>One Listing</li>
-                        <li><i class="bi bi-check-circle"></i>One Listing</li>
-                    </ul>
-                    <a href="#" class="sag-button"><?php _e('Purchase', 'search-and-go'); ?></a>
-                </div>
+                <?php } ?>
             </div>
         </div>
-        
+
         <div class="sag-gold-member">
             <div class="row">
                 <div class="col-md-6">
-                    <?php 
-                    $gold_member = get_template_directory_uri() . '/images/pricing-image.jpg'; 
+                    <?php
+                    $gold_member = get_template_directory_uri() . '/images/pricing-image.jpg';
                     ?>
                     <img src="<?php echo esc_url($gold_member); ?>" />
                 </div>

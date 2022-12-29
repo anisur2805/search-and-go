@@ -1034,13 +1034,17 @@ footer {
 // Pricing 
 .sag-pricing-container {
 	.sag-pricing {
-		display: flex;
-		gap: 40px;
+		// display: flex;
+		// gap: 40px;
 
 		.sag-single-pricing {
-			flex: 1;
-			border: 1px solid #ddd;
-			margin: 20px 0;
+			&-inner {
+				// flex: 1;
+				border: 1px solid #ddd;
+				margin: 20px 0;
+				position: relative;
+				border-radius: 3px;
+			}
 		}
 
 		.sag-pricing-header {
@@ -1088,5 +1092,22 @@ footer {
 		display: block;
 		max-width: fit-content;
 		margin: 10px auto 20px;
+	}
+	.is-featured {
+		.featured-content{
+			position: absolute;
+			background: $primary;
+			padding: 6px 12px;
+			top: -37px;
+			width: fit-content;
+			right: 20px;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			color: var(--sg-white);
+		}
+	}
+
+	.sag-gold-member {
+		padding: 40px 0;
 	}
 }

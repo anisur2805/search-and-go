@@ -11693,14 +11693,11 @@ footer::before {
   background: transparent;
 }
 
-.sag-pricing-container .sag-pricing {
-  display: flex;
-  gap: 40px;
-}
-.sag-pricing-container .sag-pricing .sag-single-pricing {
-  flex: 1;
+.sag-pricing-container .sag-pricing .sag-single-pricing-inner {
   border: 1px solid #ddd;
   margin: 20px 0;
+  position: relative;
+  border-radius: 3px;
 }
 .sag-pricing-container .sag-pricing .sag-pricing-header {
   padding: 30px;
@@ -11739,4 +11736,20 @@ footer::before {
   max-width: -moz-fit-content;
   max-width: fit-content;
   margin: 10px auto 20px;
+}
+.sag-pricing-container .is-featured .featured-content {
+  position: absolute;
+  background: #1ab5c1;
+  padding: 6px 12px;
+  top: -37px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  right: 20px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: var(--sg-white);
+}
+.sag-pricing-container .sag-gold-member {
+  padding: 40px 0;
 }/*# sourceMappingURL=main.css.map */
