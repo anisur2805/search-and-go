@@ -306,15 +306,20 @@ function sag_wishlist_cb($post){
 	<?php
 }
 
-// add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
-// add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
+add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
+add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
 function sag_wishlist_action(){
-	$arpc_name  = isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : '';
-	var_dump($arpc_name);
+	$sag_wishlist_id  	= isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : '';
+	$sag_wishlist 	= sanitize_text_field( $_POST['sag_wishlist']);
+	
+	$user_id = get_current_user_id();
+	$wishlist = get_user_meta( $user_id, 'sag_wishlist', false );
 
-	$sag_wishlist = sanitize_text_field( $_POST['sag_wishlist']);
-	// update_post_meta($post_id, '_sag_wishlist_key', $sag_wishlist );
-	update_post_meta(253, '_sag_wishlist_key', $sag_wishlist );
+	if ( empty( $wishlist ) ) {
+		add_user_meta( $user_id, 'sag_wishlist', $sag_wishlist_id );
+	}else {
+		update_user_meta( $user_id, 'sag_wishlist', $sag_wishlist_id );
+	}
 	
 	die();
 }

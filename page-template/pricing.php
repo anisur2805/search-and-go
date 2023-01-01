@@ -24,7 +24,7 @@ unset($pricing_id['redux_repeater_data']);
         </div>
 
         <div class="sag-pricing-wrapper">
-            <div class="sag-pricing row">
+            <div class="sag-pricing row align-items-center">
                 <?php
 
                 $count = count($pricing_id['pricing-title']);

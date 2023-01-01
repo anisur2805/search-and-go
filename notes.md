@@ -46,5 +46,5 @@ ALLOW TO COMMENTS CHECKBOX:
 6. Add review form
 7. Single listing Form
 8. Google map - integration
-9. Single listing masonary blog 
+9. Single listing masonry blog 
 10. 

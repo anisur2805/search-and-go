@@ -51,12 +51,19 @@
           data,
           function ( res ) {
             console.log( single_btn );
-            single_btn.classList.toggle( 'wishlisted' )
+            // single_btn.classList.toggle( 'wishlisted' )
           }
         )
       } )
 
     } );
+
+    // prevent logout user
+    $('.sag-wishlist-require-login').on('click', function (e) {
+    e.preventDefault();
+      alert('Sorry, you need to login first.');
+      return false;
+    });
 
     // Back to top
     /**

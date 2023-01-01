@@ -30,6 +30,12 @@
                     )
                 );
                 $the_query  = new WP_Query( $args );
+                $user_id        = get_current_user_id();
+                $sag_wishlist   = get_user_meta( $user_id, 'sag_wishlist', true );
+
+                echo '<pre>';
+                    print_r( $sag_wishlist );
+                echo '</pre>';
         
                 if($the_query->have_posts()):
                     while($the_query->have_posts()):
@@ -39,11 +45,18 @@
                                 echo '<a href="'.get_the_permalink().'">'.get_the_post_thumbnail().'</a>';
                             }
                             
-                            echo '<div class="single-post-item-content">';
+                            echo '<div class="single-post-item-content ">' . $sag_wishlist;
+                            if( is_user_logged_in() ) {
+                                if( $sag_wishlist ){
+                                    echo '<button data-wishlist-id="'.get_the_ID().'" class="sag-wishlist yes" href="#"><i class="bi bi-heart"></i></button>';
+                                } else {
+                                    echo '<button data-wishlist-id="'.get_the_ID().'" class="sag-wishlist no" href="#"><i class="bi bi-heart-fill"></i></button>';
+                                }
+                            } else {
+                                echo '<a href="javascript:void(0)" class="sag-wishlist-require-login sag-wishlist"><i class="bi bi-heart"></i></a>';
+                            }
                                 ?>
-                                <?php echo '<h3><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3>';
-                                echo '<button data-wishlist-id="'.get_the_ID().'" class="sag-wishlist" href="#"><i class="bi bi-heart"></i></button>';
-                                ?>
+                                <?php echo '<h3><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3>'; ?>
                                 <p><?php the_excerpt(); ?> </p> 
                                 <?php
                             echo '</div>';
