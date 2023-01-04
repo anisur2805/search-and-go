@@ -174,7 +174,12 @@ function search_and_go_scripts() {
 	wp_enqueue_script( 'jquery-auto-complete-ui', 'https://code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery') );
 	wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.min.js', array(), time(), true );
 	wp_enqueue_script( 'main-script-js', get_template_directory_uri() . '/js/main.js', array( 'jquery-auto-complete-ui', 'slick-js' ), time(), true );
-	wp_localize_script( 'main-script-js', 'wishlist', array(
+	wp_localize_script( 'main-script-js', 'sagObj', array(
+		'ajaxUrl' => admin_url('admin-ajax.php'),
+	));
+
+	wp_enqueue_script( 'sag-form-id', get_template_directory_uri() . '/js/sag-form.js', array( 'jquery' ), time(), true );
+	wp_localize_script( 'sag-form-id', 'sagFormObj', array(
 		'ajaxUrl' => admin_url('admin-ajax.php')
 	));
 
@@ -306,21 +311,34 @@ function sag_wishlist_cb($post){
 	<?php
 }
 
-add_action('wp_ajax_sag_wishlist_action', 'sag_wishlist_action');
-add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_wishlist_action');
-function sag_wishlist_action(){
-	$sag_wishlist_id  	= isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : '';
-	$sag_wishlist 	= sanitize_text_field( $_POST['sag_wishlist']);
+add_action('wp_ajax_sag_wishlist_action', 'sag_add_remove_wishlist_all');
+add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_add_remove_wishlist_all');
+function sag_add_remove_wishlist_all(){
+	// if( !wp_verify_nonce()) {
+	// 	wp_send_json(false, 200);
+	// }
+	$sag_wishlist_id  	= isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : 0;
 	
 	$user_id = get_current_user_id();
-	$wishlist = get_user_meta( $user_id, 'sag_wishlist', false );
+	$wishlist = get_user_meta( $user_id, 'sag_wishlist', true );
+
+	if( ! $user_id){
+		$data = 'login_required';
+		echo esc_attr( $data );
+		wp_die();
+	}
 
 	if ( empty( $wishlist ) ) {
+		echo "empty";
+		$data = $sag_wishlist_id;
 		add_user_meta( $user_id, 'sag_wishlist', $sag_wishlist_id );
 	}else {
+		echo "not empty";
+		$data = '';
 		update_user_meta( $user_id, 'sag_wishlist', $sag_wishlist_id );
 	}
 	
+	echo wp_json_encode( $data );
 	die();
 }
 
@@ -341,4 +359,13 @@ function sag_socials(){
 		<li><a href="<?php echo esc_url($vimeo_url); ?>" href="#"><i class="fa fa-vimeo"></i></a></li>
 	</ul>
 	<?php
+}
+
+add_action('wp_ajax_sag_form_handler', 'sag_form_handler');
+
+function sag_form_handler(){
+	// Get the post ID from the AJAX request
+	$post_id = intval($_REQUEST['keyword']);
+	// Return the post title
+	wp_send_json_success(array('title' => $post_id ));
 }

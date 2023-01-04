@@ -11752,4 +11752,9 @@ footer::before {
 }
 .sag-pricing-container .sag-gold-member {
   padding: 40px 0;
+}
+
+.sag-added-to-wishlist .bi-heart::before {
+  content: "\f415";
+  color: #0d6efd;
 }/*# sourceMappingURL=main.css.map */

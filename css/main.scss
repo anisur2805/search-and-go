@@ -1114,3 +1114,12 @@ footer {
 		padding: 40px 0;
 	}
 }
+
+
+// Add to wishlist
+.sag-added-to-wishlist {
+	.bi-heart::before {
+		content: "\f415";
+		color: $primary;
+	}
+}

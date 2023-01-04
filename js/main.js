@@ -1,10 +1,10 @@
 ; ( function ( $ ) {
   $( document ).ready( function () {
-    var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC"];
+    // var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC"];
 
-    $( "#keyword-hp" ).autocomplete( {
-      source: availableTags
-    } );
+    // $( "#keyword-hp" ).autocomplete( {
+    //   source: availableTags
+    // } );
 
     // Testimonial 
     $( '.testimonials-slider' ).slick( {
@@ -40,18 +40,36 @@
         var self = $( this );
         var wishlist_id = single_btn.getAttribute( 'data-wishlist-id' );
 
-        console.log( wishlist_id )
+        // console.log( wishlist_id )
         var data = {
           'wishlist_post_id': wishlist_id,
           'action': 'sag_wishlist_action',
+          'post_id': $( this ).data( 'wishlist-id' )
         };
 
         $.post(
-          wishlist.ajaxUrl,
+          sagObj.ajaxUrl,
           data,
           function ( res ) {
-            console.log( single_btn );
-            // single_btn.classList.toggle( 'wishlisted' )
+            // var wl_id = single_btn.getAttribute( 'data-wishlist-id' );
+            // var data_id = $( '.sag-wishlist_' + wl_id )
+            // var post_id = data_id.attr('data-wishlist-id');
+            // console.log( "wl_id", data_id )
+
+
+            var post_id = data['post_id'].toString();
+            var staElement = $( '.sag-wishlist_' + post_id );
+            var data_id = staElement.attr( 'data-wishlist-id' );
+
+            if ( "false" === res ) {
+              staElement.removeClass( 'sag-added-to-wishlist' );
+              console.log( "removed" )
+            } else {
+              if ( data_id === post_id ) {
+                console.log( "added" )
+                staElement.addClass( 'sag-added-to-wishlist' );
+              }
+            }
           }
         )
       } )
@@ -59,16 +77,13 @@
     } );
 
     // prevent logout user
-    $('.sag-wishlist-require-login').on('click', function (e) {
-    e.preventDefault();
-      alert('Sorry, you need to login first.');
+    $( '.sag-wishlist-require-login' ).on( 'click', function ( e ) {
+      e.preventDefault();
+      alert( 'Sorry, you need to login first.' );
       return false;
-    });
+    } );
 
     // Back to top
-    /**
- * back to top
- */
     var backTopBtn = $( '#back-to-top' );
     if ( $( window ).scrollTop() > 450 ) {
       backTopBtn.addClass( 'show' );
@@ -81,20 +96,16 @@
       $( 'html, body' ).animate( { scrollTop: 0 }, '300' );
     } );
 
+    // init Masonry
+    var $grid = $( '.grid' ).masonry( {
+      itemSelector: '.grid-item',
+      percentPosition: true,
+      columnWidth: '.grid-sizer'
+    } );
 
-    // Masonry JS
-    // external js: masonry.pkgd.js, imagesloaded.pkgd.js
-
-  // init Masonry
-  var $grid = $('.grid').masonry({
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    columnWidth: '.grid-sizer'
-  });
-  // layout Masonry after each image loads
-  $grid.imagesLoaded().progress( function() {
-    $grid.masonry();
-  });  
-
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress( function () {
+      $grid.masonry();
+    } );
   } );
 } )( jQuery );
