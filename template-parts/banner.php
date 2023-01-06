@@ -9,8 +9,8 @@ $terms = get_terms(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Find the Best Places to Be</h1>
-                <p>All the top locations – from restaurants and clubs, to cinemas, galleries, and more.</p>
+                <h1><?php _e('Find the Best Places to Be', 'search-and-go') ?></h1>
+                <p><?php _e('All the top locations – from restaurants and clubs, to cinemas, galleries, and more.', 'search-and-go'); ?></p>
                 <?php
                 get_template_part('/template-parts/search', 'form' );
                 ?>

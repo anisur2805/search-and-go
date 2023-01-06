@@ -178,11 +178,6 @@ function search_and_go_scripts() {
 		'ajaxUrl' => admin_url('admin-ajax.php'),
 	));
 
-	wp_enqueue_script( 'sag-form-id', get_template_directory_uri() . '/js/sag-form.js', array( 'jquery' ), time(), true );
-	wp_localize_script( 'sag-form-id', 'sagFormObj', array(
-		'ajaxUrl' => admin_url('admin-ajax.php')
-	));
-
 	wp_enqueue_script( 'jquery-masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js' );
 	wp_enqueue_script( 'jquery-masonry-image-load', 'https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js' );
 
@@ -191,6 +186,17 @@ function search_and_go_scripts() {
 	wp_enqueue_style( 'slick-min', get_template_directory_uri() . '/css/slick.min.css', array(), time() );
 	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css', array(), time() );
+
+	wp_enqueue_script( 'sag-listing-search-form', get_template_directory_uri() . '/js/form.js', array('jquery'), time(), true );
+	wp_localize_script( 'sag-listing-search-form', 'formObj', array(
+		'url' => admin_url('admin-ajax.php'),
+		'we_value' => 1234,
+		'whatever' => 1234,
+		'confirm' => __('Are you sure?', 'search-and-go'),
+		'success' => __('Successfully done', 'search-and-go'),
+		'error'   => __('Something went wrong', 'search-and-go'),
+	));
+
 }
 add_action( 'wp_enqueue_scripts', 'search_and_go_scripts' );
 
@@ -361,11 +367,47 @@ function sag_socials(){
 	<?php
 }
 
-add_action('wp_ajax_sag_form_handler', 'sag_form_handler');
+add_action( 'wp_ajax_search_form_handler', 'search_form_handler' );
+add_action( 'wp_ajax_nopriv_search_form_handler', 'search_form_handler' );
 
-function sag_form_handler(){
-	// Get the post ID from the AJAX request
-	$post_id = intval($_REQUEST['keyword']);
-	// Return the post title
-	wp_send_json_success(array('title' => $post_id ));
+function search_form_handler(){
+	if( ! wp_verify_nonce( $_POST['_wpnonce'], 'sag-form-nonce' ) ) {
+		wp_send_json_error([
+			'message' => __('Nonce verification failed', 'search-and-go'),
+		]);
+
+	} else {
+		// if ( isset( $_POST['keyword'] ) ) {
+			$data = $_POST['keyword'];
+
+			$keyword  = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+			$category = isset($_POST['sag_category']) ? $_POST['sag_category'] : '';
+			$location = isset($_POST['sag_location']) ? $_POST['sag_location'] : '';
+
+			// wp_send_json_success([
+			// 	'keyword'	=> esc_attr( $keyword ),
+			// 	'category'	=> esc_attr( $category ),
+			// 	'location'	=> esc_attr( $location ),
+			// 	'message' 	=> __('Message send successfully', 'search-and-go'),
+			// ]);
+
+			// Build the URL for the listing page
+			// $listing_url = add_query_arg( array(
+			// 	'keywords' => $keyword,
+			// 	'category' => $category,
+			// 	'location' => $location,
+			// ), home_url( '/listing-item/' ) );
+
+			// $data = $_POST['data'];
+			// Build the redirect URL using the form data
+			$redirect_url = add_query_arg( $data, home_url( '/listing-item/' ) );
+			echo "red " . $redirect_url;
+			wp_redirect( $redirect_url );
+			exit;
+	
+
+		// }
+	}
+
+	die();
 }

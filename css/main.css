@@ -10821,6 +10821,9 @@ section#banner {
   position: relative;
   z-index: 2;
 }
+section#banner .sag-listing-search-form {
+  margin: 30px 0 0;
+}
 section#banner::before {
   content: "";
   position: absolute;
@@ -10837,11 +10840,14 @@ section#banner h1, section#banner .h1 {
   font-size: 80px;
   margin-bottom: 20px;
 }
+section#banner h5, section#banner .h5 {
+  display: none;
+}
 section#banner p {
   color: #fff;
   font-size: 24px;
 }
-section#banner a.sg-btn {
+section#banner .sg-btn {
   padding: 15px 20px;
   border-radius: 6px;
   background: #1ab5c1;
@@ -10851,7 +10857,7 @@ section#banner a.sg-btn {
   transition: all 0.3s;
   border: 2px solid #1ab5c1;
 }
-section#banner a.sg-btn:hover {
+section#banner .sg-btn:hover {
   background: transparent;
   border-color: var(--sg-white);
 }
@@ -11029,6 +11035,9 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
 }
 .single-listing-item .sg-filter-row select {
   border-left: 0;
+}
+.single-listing-item .sg-btn {
+  display: none;
 }
 .single-listing-item .sg-filter-row-2 {
   background: #1ab5c1;

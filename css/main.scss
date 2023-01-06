@@ -73,6 +73,9 @@ section#banner {
 	text-align: center;
 	position: relative;
 	z-index: 2;
+	.sag-listing-search-form {
+		margin: 30px 0 0;
+	}
 	&::before {
 		content: "";
 		position: absolute;
@@ -90,12 +93,16 @@ section#banner {
 		margin-bottom: 20px;
 	}
 
+	h5 {
+		display: none;
+	}
+
 	p {
 		color: #fff;
 		font-size: 24px;
 	}
 
-	a.sg-btn {
+	.sg-btn {
 		padding: 15px 20px;
 		border-radius: 6px;
 		background: $color-primary;
@@ -289,6 +296,10 @@ section#banner {
 		select {
 			border-left: 0;
 		}
+
+	}
+	.sg-btn {
+		display: none;
 	}
 
 	.sg-filter-row-2 {

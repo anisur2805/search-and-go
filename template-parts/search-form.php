@@ -6,9 +6,11 @@ $cats = get_terms(
     )
 );
 ?>
-<form action="" class="sag-listing-search-form">
+<form class="sag-listing-search-form" id="sag-listing-search-form">
+
     <div class="sg-filter-row">
         <div class="sg-filter-row-keyword flex1 mb-20px">
+            <h5><?php _e('Keywords', 'search-and-go'); ?></h5>
             <input type="text" name="keyword" id="keyword-hp" class="" placeholder="Keyword" value="" autocomplete="off">
 
             <?php
@@ -31,8 +33,10 @@ $cats = get_terms(
             ?>
 
         </div>
+
         <div class="sg-filter-row-category flex1 mb-20px">
-            <select name="sag-cat" class="">
+            <h5><?php _e('Category', 'search-and-go'); ?></h5>
+            <select name="sag_category" class="sag_category" id="sag_category">
                 <option value="">All</option>
                 <?php
                 foreach ($cats as $cat) {
@@ -46,19 +50,25 @@ $cats = get_terms(
                 ?>
             </select>
         </div>
+
         <div class="sg-filter-row-location flex1 mb-20px">
+            <h5><?php _e('Location', 'search-and-go'); ?></h5>
             <?php
             $args = array(
-                'show_option_none' => __('Select Location', 'textdomain'),
+                'show_option_none' => __('Select Location', 'search-and-go'),
                 'orderby'          => 'name',
                 'taxonomy'         => 'sag_location',
+                'name'             => 'sag_location',
+                'value_field'      => 'slug',
+                'class'            => 'sag_location',
             );
-            wp_dropdown_categories($args);
+           wp_dropdown_categories($args);
             ?>
-            <?php $categories = get_the_terms($post->ID, 'sag_location'); ?>
         </div>
     </div>
     
-    <button type="submit" class="sg-btn"><i class="bi bi-search"></i> Search place</button>
-    <?php wp_nonce_field('sag_form_handler', 'sag_form_nonce'); ?>
+    <?php wp_nonce_field( 'sag-form-nonce' ); ?>
+    <input type="hidden" name="action" value="search_form_handler" />
+    <button type="submit" name="form_data" class="sg-btn"><i class="bi bi-search"></i> Search place</button>
+    
 </form>
