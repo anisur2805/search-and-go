@@ -62,13 +62,13 @@ $cats = get_terms(
                 'value_field'      => 'slug',
                 'class'            => 'sag_location',
             );
-           wp_dropdown_categories($args);
+            wp_dropdown_categories($args);
             ?>
         </div>
     </div>
     
-    <?php wp_nonce_field( 'sag-form-nonce' ); ?>
-    <input type="hidden" name="action" value="search_form_handler" />
+    <?php //wp_nonce_field( 'sag-form-nonce' ); ?>
+    <!-- <input type="hidden" name="action" value="search_form_handler" /> -->
     <button type="submit" name="form_data" class="sg-btn"><i class="bi bi-search"></i> Search place</button>
     
 </form>

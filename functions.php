@@ -190,6 +190,7 @@ function search_and_go_scripts() {
 	wp_enqueue_script( 'sag-listing-search-form', get_template_directory_uri() . '/js/form.js', array('jquery'), time(), true );
 	wp_localize_script( 'sag-listing-search-form', 'formObj', array(
 		'url' => admin_url('admin-ajax.php'),
+		'nonce' => wp_create_nonce('search-form-nonce'),
 		'we_value' => 1234,
 		'whatever' => 1234,
 		'confirm' => __('Are you sure?', 'search-and-go'),
@@ -370,44 +371,28 @@ function sag_socials(){
 add_action( 'wp_ajax_search_form_handler', 'search_form_handler' );
 add_action( 'wp_ajax_nopriv_search_form_handler', 'search_form_handler' );
 
-function search_form_handler(){
-	if( ! wp_verify_nonce( $_POST['_wpnonce'], 'sag-form-nonce' ) ) {
-		wp_send_json_error([
-			'message' => __('Nonce verification failed', 'search-and-go'),
-		]);
+function search_form_handler() {
 
+	if( ! check_ajax_referer('search-form-nonce','security',false)) {
+        _e('Nonce verification failed', 'search-and-go');
+		wp_die();
 	} else {
-		// if ( isset( $_POST['keyword'] ) ) {
-			$data = $_POST['keyword'];
+		if ( isset( $_POST['data'] ) ) {
 
 			$keyword  = isset($_POST['keyword']) ? $_POST['keyword'] : '';
 			$category = isset($_POST['sag_category']) ? $_POST['sag_category'] : '';
 			$location = isset($_POST['sag_location']) ? $_POST['sag_location'] : '';
-
-			// wp_send_json_success([
-			// 	'keyword'	=> esc_attr( $keyword ),
-			// 	'category'	=> esc_attr( $category ),
-			// 	'location'	=> esc_attr( $location ),
-			// 	'message' 	=> __('Message send successfully', 'search-and-go'),
-			// ]);
-
-			// Build the URL for the listing page
-			// $listing_url = add_query_arg( array(
-			// 	'keywords' => $keyword,
-			// 	'category' => $category,
-			// 	'location' => $location,
-			// ), home_url( '/listing-item/' ) );
-
-			// $data = $_POST['data'];
-			// Build the redirect URL using the form data
+			
+			$data = [
+				'keyword'	=> esc_attr( $keyword ),
+				'category'	=> esc_attr( $category ),
+				'location'	=> esc_attr( $location ),
+				'message' 	=> __('Message send successfully', 'search-and-go'),
+			];
 			$redirect_url = add_query_arg( $data, home_url( '/listing-item/' ) );
-			echo "red " . $redirect_url;
-			wp_redirect( $redirect_url );
-			exit;
-	
-
-		// }
+			var_dump($redirect_url);
+			echo json_encode(array('S'=>true,'M'=>'Response success','data_redirect'=>wp_redirect( $redirect_url )));
+			die();
+		}
 	}
-
-	die();
 }

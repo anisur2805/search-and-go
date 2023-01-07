@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-5 py-2 px-4">
 
-            <?php //get_template_part('/template-parts/search', 'form' ); ?>
+            <?php get_template_part('/template-parts/search', 'form' ); ?>
 
                 <div class="sg-filter-row-2">
                     <p>5 Results Found</p>
@@ -25,6 +25,7 @@
                 <div class="row sg-result-row">
                     <div class="sg-result-posts">
                         <?php
+                            $url_data = $_GET;
                             $url            = site_url().$_SERVER['REQUEST_URI'];
                             $extract_url    = explode('/', $url);
                             $location_item  = $extract_url[sizeof($extract_url)-2];
@@ -34,12 +35,23 @@
                                 'post_status'    => 'publish',
                                 'posts_per_page' => -1,
                                 'tax_query' => array(
+                                    'relation' => 'OR',
+                                    array(
+                                        'taxonomy' => 'keyword',
+                                        'field'    => 'slug',
+                                        'terms'    => $url_data['keyword'],
+                                    ),
+                                    array(
+                                        'taxonomy' => 'sag_category',
+                                        'field'    => 'slug',
+                                        'terms'    => $url_data['sag_category'],
+                                    ),
                                     array(
                                         'taxonomy' => 'sag_location',
                                         'field'    => 'slug',
-                                        'terms'    => $location_item,
+                                        'terms'    => $url_data['sag_location'],
                                     ),
-                                ),
+                                )
                             );
                             $location_query =  new WP_Query( $sg_location_args );
                             

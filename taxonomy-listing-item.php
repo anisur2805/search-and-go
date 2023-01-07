@@ -5,6 +5,7 @@
  */
 
 get_header();
+
 if (have_posts()): while (have_posts()): the_post();
         if( isset( $_GET['keyword'] ) ) {
             get_template_part('template-parts/sag_keyword');
