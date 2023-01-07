@@ -202,18 +202,20 @@ get_header(); ?>
                 <?php } ?>
 
                 <div class="sag-listing-sidebar-item sag-enquire-now sag-form-wrapper">
-                    <h4 class="single-listing-title">Enquire now</h4>
-                    <form class="sag-form">
-                        <?php wp_nonce_field( 'sag-enquire' ); ?>
-                        <div class="sag-enquire-div sag-enquire">
-                            <input type="text" name="sag-name" id="sag-name" placeholder="Enter Name" />
-                            <input type="text" name="sag-email" id="sag-email" placeholder="Enter Email" />
-                            <input type="text" name="sag-phone" id="sag-phone" placeholder="Enter Phone" />
-                            <textarea placeholder="Enter Message" name="sag-message" id="sag-message"></textarea>
-                        </div>
-                        <input type="submit" name="sag-submit" id="sag-submit" value="Submit" />
-                    </form>
+                <h4 class="single-listing-title">Enquire now</h4>
+                <form method="post" class="sag-form">
+                    <?php wp_nonce_field( 'sag-enquire' ); ?>
+                    <div class="sag-enquire-div sag-enquire">
+                    <input type="text" name="sag-name" id="sag-name" placeholder="Enter Name" />
+                    <input type="email" name="sag-email" id="sag-email" placeholder="Enter Email" />
+                    <input type="tel" name="sag-phone" id="sag-phone" placeholder="Enter Phone" />
+                    <textarea placeholder="Enter Message" name="sag-message" id="sag-message"></textarea>
+                    </div>
+                    <input type="hidden" name="action" value="enquire_form" />
+                    <input type="submit" name="sag_submit" id="sag-submit" value="Submit" />
+                </form>
                 </div>
+
             </div>
         </div>
 
