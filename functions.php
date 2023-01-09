@@ -419,6 +419,7 @@ function enquire_form(){
 	} else {
 		$name  		= isset($_POST['sag-name']) ? sanitize_text_field( $_POST['sag-name'] ) : '';
 		$enq_id  	= isset($_POST['enquiry-item-id']) ? sanitize_text_field( $_POST['enquiry-item-id'] ) : '';
+		$post_id    = ! empty( $_POST['post_id'] ) ? sanitize_text_field( absint( $_POST['post_id'] ) ) : '';
 		$email  	= isset($_POST['sag-email']) ? sanitize_email( $_POST['sag-email'] ) : '';
 		$phone  	= isset($_POST['sag-phone']) ? sanitize_text_field( $_POST['sag-phone'] ) : '';
 		$message  	= isset($_POST['sag-message']) ? sanitize_textarea_field( $_POST['sag-message'] ) : '';
@@ -436,12 +437,72 @@ function enquire_form(){
 				'message'  		=> $message,
 			);
 	
+			$to = get_option('admin_email');
+			$name = get_option('blogname');
+			$title = get_the_title( $post_id );
+			$subject =  $name ." Contact via " . $title;
+			$listing_url   = get_permalink( $post_id );
+			$date_format   = get_option( 'date_format' );
+			$time_format   = get_option( 'time_format' );
+			$current_time  = current_time( 'timestamp' );
+			$now = date_i18n( $date_format . ' ' . $time_format, $current_time );
+			$message = "{$name} Contact via {$title}<br/>Dear Administrator,\n
+			{$name} Contact via {$title}";
+			
+			// $test = wp_mail( $to, $subject, $message );
+			$test = [$to, $subject, $message];
+			echo $test;
+
 			wp_send_json_success( array(
-				'data' => $data
+				'data' => $data,
+				'test' => $test
 			) );
 		}
 	}
 
 }
 
-include get_template_directory() . '/inc/hip-map-v2.php';
+/**
+ * Create a post delete button
+ *
+ * @param [type] $content
+ * @return void
+ */
+function sag_generate_delete_link( $content ){
+	if( is_single() && in_the_loop() && is_main_query() ) {
+		$url = add_query_arg([
+			'action' 		=> 'sag_post_frontend_delete',
+			'post'			=> get_the_ID(),
+			'nonce'			=> wp_create_nonce('sag_post_frontend_delete'),
+		], home_url());
+
+		return $content .= ' <a class="sag-btn sag-button" href="'. esc_url( $url ).'">'. esc_html__('Delete Post').'</a>';
+
+	}
+
+	return null;
+}
+
+function sag_post_frontend_delete() {
+	if( isset( $_GET['action']) && isset( $_GET['nonce']) && $_GET['action'] === 'sag_post_frontend_delete' && wp_verify_nonce( $_GET[ 'nonce' ], 'sag_post_frontend_delete' ) ) {
+		$post_id = ( isset( $_GET['post'] ) ) ? ( $_GET['post'] ) : ( null );
+
+		$post = get_post( (int) $post_id );
+		if( empty( $post ) ) {
+			return;
+		}
+
+		wp_trash_post( $post_id );
+		$redirect = admin_url( 'edit.php' );
+		wp_safe_redirect( $redirect );
+		die();
+	}
+}
+
+function sag_delete_post_capability() {
+	if( current_user_can( 'edit_others_posts' ) ) {
+		add_filter( 'the_content', 'sag_generate_delete_link' );
+		add_action( 'init', 'sag_post_frontend_delete' );
+	}
+}
+add_action( 'init', 'sag_delete_post_capability' );

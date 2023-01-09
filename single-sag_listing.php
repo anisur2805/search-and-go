@@ -227,10 +227,6 @@ get_header(); ?>
 
             </div>
         </div>
-        <?php echo do_shortcode('[direction_to_gmb_map]'); ?>
-        <div>
-            <?php echo hip_direction_to_gmb_info(); ?>
-        </div>
     </div>
 </div>
 <?php

@@ -11,9 +11,9 @@ will be slick slider
 
 RIGHT SIDE: 
 1. Map/ address
-2. Social Profiles
+2. Social Profiles - done
 3. Book a table online
-4. Recommended
+4. Recommended - done
 5. Enquire now
 
 CAN BE:
@@ -48,3 +48,22 @@ ALLOW TO COMMENTS CHECKBOX:
 8. Google map - integration
 9. Single listing masonry blog 
 10. 
+
+
+Enq form 
+
+new-test Contact via Gary Danko
+Dear Administrator,
+
+A listing on your website new-test received a message.
+
+Listing URL: http://localhost:10013/directory/gary-danko/
+
+Name: Hedda Justice
+Email: fegeqygegu@mailinator.com
+Message: Dicta esse ipsum no
+Time: January 9, 2023 8:09 pm
+
+This is just a copy of the original email and was already sent to the listing owner. You don't have to reply this unless necessary.
+
+[Image] https://i.imgur.com/oSZi8qC.png
