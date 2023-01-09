@@ -150,7 +150,7 @@ get_header(); ?>
                 <div class="sag-listing-sidebar-item sag-booking-wrapper">
                     <h4 class="single-listing-title">Book a table online <span class="float-end text-muted">Powered by OpenTable</span></h4>
                     <form class="sag-form ">
-                        <?php wp_nonce_field( 'sag-booking' ); ?>
+                        <?php wp_nonce_field( 'sag-booking', 'sag-booking' ); ?>
                         <div class="sag-enquire-div">
                             <select name="sag-booking-persons" id="sag-booking-persons">
                                 <option value="1">1 Person</option>
@@ -161,6 +161,12 @@ get_header(); ?>
                             <input type="text" name="sag-booking-date" id="sag-booking-date" placeholder="Booking Date" />
                             <input type="text" name="sag-booking-time" id="sag-booking-time" placeholder="Booking Time" />
                         </div>
+                        <input type="hidden" name="action" value="sag_booking_form" />
+                        <input type="hidden" name="restaurantID" id="restaurantID" value="<?php echo get_the_ID(); ?>" />
+                        <input type="hidden" name="rid" id="rid" value="<?php echo get_the_ID(); ?>" />
+                        <input type="hidden" name="GeoID" id="GeoID" value="<?php echo get_the_ID(); ?>" />
+                        <input type="hidden" name="txtDateFormat" id="txtDateFormat" value="<?php echo get_the_ID(); ?>" />
+                        <input type="hidden" name="RestaurantReferralID" id="RestaurantReferralID" value="<?php echo get_the_ID(); ?>" />
                         <input type="submit" name="sag-booking-submit" id="sag-booking-submit" value="Book Now" />
                     </form>                    
                 </div>
@@ -202,23 +208,29 @@ get_header(); ?>
                 <?php } ?>
 
                 <div class="sag-listing-sidebar-item sag-enquire-now sag-form-wrapper">
-                <h4 class="single-listing-title">Enquire now</h4>
-                <form method="post" class="sag-form">
-                    <?php wp_nonce_field( 'sag-enquire' ); ?>
-                    <div class="sag-enquire-div sag-enquire">
-                    <input type="text" name="sag-name" id="sag-name" placeholder="Enter Name" />
-                    <input type="email" name="sag-email" id="sag-email" placeholder="Enter Email" />
-                    <input type="tel" name="sag-phone" id="sag-phone" placeholder="Enter Phone" />
-                    <textarea placeholder="Enter Message" name="sag-message" id="sag-message"></textarea>
-                    </div>
-                    <input type="hidden" name="action" value="enquire_form" />
-                    <input type="submit" name="sag_submit" id="sag-submit" value="Submit" />
-                </form>
+                    <h4 class="single-listing-title">Enquire now</h4>
+                    <form method="post" class="sag-form">
+                        <?php wp_nonce_field( 'sag-enquire', 'sag-enquire' ); ?>
+                        <div class="sag-enquire-div sag-enquire">
+                        <input type="text" name="sag-name" id="sag-name" placeholder="Enter Name" />
+                        <input type="email" name="sag-email" id="sag-email" placeholder="Enter Email" />
+                        <input type="tel" name="sag-phone" id="sag-phone" placeholder="Enter Phone" />
+                        <textarea placeholder="Enter Message" name="sag-message" id="sag-message"></textarea>
+                        </div>
+                        <input type="hidden" name="action" value="enquire_form" />
+                        <input type="hidden" name="enquiry-item-id" id="enquiry-item-id" value="<?php echo get_the_ID(); ?>" />
+                        <input type="submit" name="sag_submit" id="sag-submit" value="Submit" />
+                    </form>
                 </div>
+
+                
 
             </div>
         </div>
-
+        <?php echo do_shortcode('[direction_to_gmb_map]'); ?>
+        <div>
+            <?php echo hip_direction_to_gmb_info(); ?>
+        </div>
     </div>
 </div>
 <?php

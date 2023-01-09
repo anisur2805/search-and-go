@@ -264,6 +264,9 @@ require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
 require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
 require get_template_directory() . '/lib/redux-framework/sample/config.php';
 
+// Include Menu 
+require get_template_directory() . '/inc/Menu.php';
+
 // Custom excerpt length 
 function sg_custom_excerpt_length( $length ) {
 	if ( get_post_type( get_the_ID() ) == 'sag_listing' ) {
@@ -409,35 +412,36 @@ function search_form_handler() {
 add_action( 'wp_ajax_enquire_form', 'enquire_form' );
 add_action( 'wp_ajax_nopriv_enquire_form', 'enquire_form' );
 function enquire_form(){
-	// if( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'sag-enquire' ) ) {
-	// 	wp_send_json_error(
-	// 		array(
-	// 			'message' => __('Nonce verify failed!', 'search-and-go')
-	// 	  	)
-	// 	);
-	// } else {
-		if( isset( $_POST['sag_submit'] ) ) {
-			$name  = isset($_POST['sag-name']) ? sanitize_text_field( $_POST['sag-name'] ) : '';
-			$email  = isset($_POST['sag-email']) ? sanitize_email( $_POST['sag-email'] ) : '';
-			$phone  = isset($_POST['sag-phone']) ? sanitize_text_field( $_POST['sag-phone'] ) : '';
-			$message  = isset($_POST['sag-message']) ? sanitize_textarea_field( $_POST['sag-message'] ) : '';
+	if( ! wp_verify_nonce( $_REQUEST['sag-enquire'], 'sag-enquire' ) ) {
+		wp_send_json_error( array(
+			'message' => __('Nonce verify failed!', 'search-and-go')
+		) );
+	} else {
+		$name  		= isset($_POST['sag-name']) ? sanitize_text_field( $_POST['sag-name'] ) : '';
+		$enq_id  	= isset($_POST['enquiry-item-id']) ? sanitize_text_field( $_POST['enquiry-item-id'] ) : '';
+		$email  	= isset($_POST['sag-email']) ? sanitize_email( $_POST['sag-email'] ) : '';
+		$phone  	= isset($_POST['sag-phone']) ? sanitize_text_field( $_POST['sag-phone'] ) : '';
+		$message  	= isset($_POST['sag-message']) ? sanitize_textarea_field( $_POST['sag-message'] ) : '';
 
-			if ( empty( $name ) || empty( $email ) || empty( $message ) ) {
-				wp_send_json_error( array(
+		if ( empty( $name ) || empty( $email ) || empty( $message ) ) {
+			wp_send_json_error( array(
 				'message' => 'Please fill out all required fields.'
-				) );
-			} else {
-				$data  = array(
-				'name'  => $name,
-				'email'  => $email,
-				'phone'  => $phone,
-				'message'  => $message,
-				);
-		
-				wp_send_json_success( array(
+			) );
+		} else {
+			$data  = array(
+				'name'  		=> $name,
+				'email'  		=> $email,
+				'phone'  		=> $phone,
+				'enq-form-id'   => $enq_id,
+				'message'  		=> $message,
+			);
+	
+			wp_send_json_success( array(
 				'data' => $data
-				) );
-			}
-			}
-		// }
+			) );
+		}
+	}
+
 }
+
+include get_template_directory() . '/inc/hip-map-v2.php';
