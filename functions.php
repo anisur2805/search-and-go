@@ -419,7 +419,7 @@ function enquire_form(){
 	} else {
 		$name  		= isset($_POST['sag-name']) ? sanitize_text_field( $_POST['sag-name'] ) : '';
 		$enq_id  	= isset($_POST['enquiry-item-id']) ? sanitize_text_field( $_POST['enquiry-item-id'] ) : '';
-		$post_id    = ! empty( $_POST['post_id'] ) ? sanitize_text_field( absint( $_POST['post_id'] ) ) : '';
+		$post_id    = $enq_id;
 		$email  	= isset($_POST['sag-email']) ? sanitize_email( $_POST['sag-email'] ) : '';
 		$phone  	= isset($_POST['sag-phone']) ? sanitize_text_field( $_POST['sag-phone'] ) : '';
 		$message  	= isset($_POST['sag-message']) ? sanitize_textarea_field( $_POST['sag-message'] ) : '';
@@ -429,34 +429,44 @@ function enquire_form(){
 				'message' => 'Please fill out all required fields.'
 			) );
 		} else {
-			$data  = array(
-				'name'  		=> $name,
-				'email'  		=> $email,
-				'phone'  		=> $phone,
-				'enq-form-id'   => $enq_id,
-				'message'  		=> $message,
-			);
+			// $data  = array(
+			// 	'name'  		=> $name,
+			// 	'email'  		=> $email,
+			// 	'phone'  		=> $phone,
+			// 	'enq-form-id'   => $enq_id,
+			// 	'message'  		=> $message,
+			// );
 	
 			$to = get_option('admin_email');
-			$name = get_option('blogname');
+			$site_name = get_option('blogname');
 			$title = get_the_title( $post_id );
-			$subject =  $name ." Contact via " . $title;
+			$subject =  $site_name ." Contact via " . $title;
 			$listing_url   = get_permalink( $post_id );
 			$date_format   = get_option( 'date_format' );
 			$time_format   = get_option( 'time_format' );
 			$current_time  = current_time( 'timestamp' );
 			$now = date_i18n( $date_format . ' ' . $time_format, $current_time );
-			$message = "{$name} Contact via {$title}<br/>Dear Administrator,\n
-			{$name} Contact via {$title}";
-			
-			// $test = wp_mail( $to, $subject, $message );
-			$test = [$to, $subject, $message];
-			echo $test;
 
-			wp_send_json_success( array(
-				'data' => $data,
-				'test' => $test
-			) );
+			$message_body = <<<OUTPUT
+			{$site_name} Contact via {$title}
+			Dear Administrator,
+
+			A listing on your website {$site_name} received a message.
+
+			Listing URL: {$listing_url}
+
+			Name: {$name}
+			Email: {$email}
+			Message: $message
+			Time: {$now}
+
+			This is just a copy of the original email and was already sent to the listing owner. You don't have to reply this unless necessary.
+OUTPUT;
+			wp_mail( $to, $subject, $message_body );
+
+			wp_send_json_success([
+				'message' => __('Successfully send mail to admin email', 'search-and-go'),
+			]);
 		}
 	}
 
