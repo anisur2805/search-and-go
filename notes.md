@@ -10,11 +10,11 @@ GALLERY:
 will be slick slider
 
 RIGHT SIDE: 
-1. Map/ address
+1. Map/ address - done
 2. Social Profiles - done
 3. Book a table online
 4. Recommended - done
-5. Enquire now
+5. Enquire now ( send to admin email) - done
 
 CAN BE:
 Listing Details
