@@ -40,7 +40,7 @@ ALLOW TO COMMENTS CHECKBOX:
 //28-12-22
 1. single listing e share button - done
 2. fix back to top button - done
-3. Single listing gallery - 
+3. Single listing gallery - done
 4. wishlist post
 5. Display user review
 6. Add review form

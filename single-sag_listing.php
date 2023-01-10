@@ -9,30 +9,29 @@ get_header(); ?>
     ?>
 
     <div class="sag-container container">
-
-    <div class="sag-socials-share">
-        <div class="sag-socials">
-            <span><i class="fas fa-share"></i>Share</span> <?php echo sag_socials(); ?>
+        <div class="sag-socials-share">
+            <div class="sag-socials">
+                <span><i class="fas fa-share"></i>Share</span> <?php echo sag_socials(); ?>
+            </div>
         </div>
-    </div>
 
         <?php
-        $the_cat = get_the_category();
-        ?>
-        <?php
-        $the_cat  = get_the_category();
-        $cat_link = get_category_link($the_cat[0]->cat_ID);
-        ?>
-        <p><a href="<?php echo $cat_link; ?>"><?php echo $the_cat[0]->cat_name; ?></a></p>
+            $the_cat = get_the_category();
+            ?>
+            <?php
+            $the_cat  = get_the_category();
+            $cat_link = get_category_link($the_cat[0]->cat_ID);
+            ?>
+            <p><a href="<?php echo $cat_link; ?>"><?php echo $the_cat[0]->cat_name; ?></a></p>
 
-        <h1><?php the_title(); ?></h1>
-        <?php
-        if ( class_exists('ACF') ) {
-            $sag_features       = get_field('sag-features');
-            $sag_call           = get_field('sag-call-us');
-            $sag_website        = get_field('sag-website');
-            $sag_office_hours   = get_field('sag-office-hours');
-        ?>
+            <h1><?php the_title(); ?></h1>
+            <?php
+            if ( class_exists('ACF') ) {
+                $sag_features       = get_field('sag-features');
+                $sag_call           = get_field('sag-call-us');
+                $sag_website        = get_field('sag-website');
+                $sag_office_hours   = get_field('sag-office-hours');
+            ?>
             <div class="row single-listing-features">
                 <div class="col-md-6">
                     <p> <?php echo esc_attr($sag_features); ?></p>
@@ -125,6 +124,20 @@ get_header(); ?>
                         <?php endif; } ?>
                 <!-- !Video  -->
                 
+                <?php
+                $comments_args = array(
+                    'label_submit' => __( 'Send', 'search-and-go' ),
+                    'title_reply' => __( 'Write a Reply or Comment', 'search-and-go' ),
+                    'comment_notes_after' => '',
+                    'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br /><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+            );
+            
+            if ( comments_open() ):
+                // comment_form( $comments_args );
+                comments_template( '/single-listing-custom-comments.php' );
+            endif;
+            ?>
+
             </div>
             <div class="col-md-4">
                 <?php if (class_exists('ACF')) { ?>

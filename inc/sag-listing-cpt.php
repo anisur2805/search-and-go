@@ -4,7 +4,7 @@ function sg_sag_listing_cpt() {
     $args = array(
         'public' => true,
         'label' => __('All Listings', 'search-and-go'),
-        'supports' => array('title', 'editor', 'thumbnail'),
+        'supports' => array('title', 'editor', 'thumbnail', 'comments'),
     );
     register_post_type('sag_listing', $args);
 
