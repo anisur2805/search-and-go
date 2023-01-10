@@ -499,6 +499,11 @@ section#banner {
 		margin: 50px 0;
 		box-sizing: border-box;
 
+		img {
+			height: 400px;
+			object-fit: cover;
+		}
+
 		.slick-arrow {
 			position: absolute;
 			top: 50%;

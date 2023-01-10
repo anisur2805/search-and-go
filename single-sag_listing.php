@@ -48,15 +48,21 @@ get_header(); ?>
             </div>
         <?php } ?>
 
+        <?php $images = acf_photo_gallery( 'sag-gallery', get_the_ID() ); 
+        if( count($images) ): ?>
         <div class="single-listing-gallery">
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
-            <img src="https://searchandgo.qodeinteractive.com/wp-content/uploads/2016/03/Club-Apex-gallery4.jpg" />
+            <?php
+                foreach($images as $image):
+                    $id = $image['id'];
+                    $title = $image['title'];
+                    $url= $image['full_image_url'];
+                    if( !empty($url) ){ 
+                        echo '<img src="'. $url .'" title="'.$title.'" />';
+                    }
+                endforeach;
+            ?>
         </div>
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-8">

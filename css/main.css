@@ -11209,6 +11209,11 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   margin: 50px 0;
   box-sizing: border-box;
 }
+.single-location-wrapper .single-listing-gallery img {
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .single-location-wrapper .single-listing-gallery .slick-arrow {
   position: absolute;
   top: 50%;
