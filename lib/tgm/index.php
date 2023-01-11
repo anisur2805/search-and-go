@@ -19,26 +19,32 @@ function theme_slug_register_required_plugins() {
     $plugins = array(
         //from WordPress plugins repo
         array(
-            'name' => 'Advanced Custom Fields', // The plugin name.
-            'slug' => 'advanced-custom-fields', // The plugin slug (typically the folder name).
-           // 'source' => 'js_composer.zip', // The plugin source.
-            'required' => true, // If false, the plugin is only 'recommended' instead of required.
-            'force_activation' => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+            'name' => 'Advanced Custom Fields',
+            'slug' => 'advanced-custom-fields',
+            'required' => true,
+            'force_activation' => false,
+            'force_deactivation' => false,
         ),
         array(
-            'name' => 'Gutenberg Template and Pattern Library & Redux Framework', // The plugin name.
-            'slug' => 'redux-framework', // The plugin slug (typically the folder name).
-            'required' => true, // If false, the plugin is only 'recommended' instead of required.
-            'force_activation' => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+            'name' => 'Gutenberg Template and Pattern Library & Redux Framework',
+            'slug' => 'redux-framework',
+            'required' => true,
+            'force_activation' => false,
+            'force_deactivation' => false,
         ),
         array(
-            'name' => 'FakerPress', // The plugin name.
-            'slug' => 'fakerpress', // The plugin slug (typically the folder name).
-            'required' => true, // If false, the plugin is only 'recommended' instead of required.
-            'force_activation' => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+            'name' => 'FakerPress',
+            'slug' => 'fakerpress',
+            'required' => true,
+            'force_activation' => false,
+            'force_deactivation' => false,
+        ),
+        array(
+            'name' => 'ACF Photo Gallery Field',
+            'slug' => 'navz-photo-gallery',
+            'required' => true,
+            'force_activation' => false,
+            'force_deactivation' => false,
         ),
     );
 

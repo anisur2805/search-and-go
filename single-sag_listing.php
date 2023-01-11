@@ -47,21 +47,26 @@ get_header(); ?>
             </div>
         <?php } ?>
 
-        <?php $images = acf_photo_gallery( 'sag-gallery', get_the_ID() ); 
-        if( count($images) ): ?>
-        <div class="single-listing-gallery">
+        <?php 
+        if(in_array('navz-photo-gallery/navz-photo-gallery.php', apply_filters('active_plugins', get_option( 'active_plugins' ) ) ) ) {
+            $images = acf_photo_gallery( 'sag-gallery', get_the_ID() ); 
+            if( count($images) ): ?>
+            <div class="single-listing-gallery">
+                <?php
+                    foreach($images as $image):
+                        $id = $image['id'];
+                        $title = $image['title'];
+                        $url= $image['full_image_url'];
+                        if( !empty($url) ){ 
+                            echo '<img src="'. $url .'" title="'.$title.'" />';
+                        }
+                    endforeach;
+                ?>
+            </div>
             <?php
-                foreach($images as $image):
-                    $id = $image['id'];
-                    $title = $image['title'];
-                    $url= $image['full_image_url'];
-                    if( !empty($url) ){ 
-                        echo '<img src="'. $url .'" title="'.$title.'" />';
-                    }
-                endforeach;
+            endif; 
+        }
             ?>
-        </div>
-        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-8">
