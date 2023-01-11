@@ -235,6 +235,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/sag-listing-cpt.php';
 
 /**
+ * Shortcodes
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
@@ -339,7 +344,7 @@ function sag_add_remove_wishlist_all(){
 	
 	$user_id = get_current_user_id();
 	$wishlist = get_user_meta( $user_id, 'sag_wishlist', true );
-
+	$data = '';
 	if( ! $user_id){
 		$data = 'login_required';
 		echo esc_attr( $data );
@@ -515,4 +520,4 @@ function sag_delete_post_capability() {
 		add_action( 'init', 'sag_post_frontend_delete' );
 	}
 }
-add_action( 'init', 'sag_delete_post_capability' );
+// add_action( 'init', 'sag_delete_post_capability' );

@@ -37,7 +37,7 @@
                 if($the_query->have_posts()):
                     while($the_query->have_posts()):
                         $the_query->the_post();
-                        echo '<div class="col-md-4 single-post-item">';
+                        echo '<div class="col-md-4 single-post-item single-post-id-'.get_the_ID().'">';
                             if(has_post_thumbnail()) {
                                 echo '<a href="'.get_the_permalink().'">'.get_the_post_thumbnail().'</a>';
                             }
