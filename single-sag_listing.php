@@ -15,14 +15,12 @@ get_header(); ?>
             </div>
         </div>
 
-        <?php
-            $the_cat = get_the_category();
-            ?>
             <?php
-            $the_cat  = get_the_category();
-            $cat_link = get_category_link($the_cat[0]->cat_ID);
+                $categories = get_the_terms( $post->ID, 'sag_category' );
+                foreach( $categories as $category ) {
+                    echo '<p><a href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></p>';
+                }
             ?>
-            <p><a href="<?php echo $cat_link; ?>"><?php echo $the_cat[0]->cat_name; ?></a></p>
 
             <h1><?php the_title(); ?></h1>
             <?php
@@ -137,9 +135,9 @@ get_header(); ?>
                     'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br /><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
             );
             
-            if ( comments_open() ):
+            if ( ! post_password_required() ):
                 // comment_form( $comments_args );
-                comments_template( '/single-listing-custom-comments.php' );
+                comments_template( '/single-listing-comments.php' );
             endif;
             ?>
 
