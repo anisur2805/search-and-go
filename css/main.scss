@@ -1139,3 +1139,64 @@ footer {
 		color: $primary;
 	}
 }
+
+
+// Author 
+.sag-card-block {
+	border-color: #e3e6ef;
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    background-color: #fff;
+	padding: 20px;
+}
+.sag-mb-40 {
+    margin-bottom: 40px !important;
+}
+
+.sag-author-listing-posts-wrapper {
+	.row {
+		row-gap: 20px;
+	}
+	.sag-card-block {
+		height: 100%;
+		h2 {
+			margin: 15px auto 10px;
+			font-size: 18px;
+		}
+	}
+	.author-feature-image{
+
+		&.no-img{
+			height: 378px;
+			background: rgba(0,0,0,.65);
+		}
+	}
+}
+
+.sag-pagination {
+	justify-content: center;
+	margin: 20px 0;
+	display: flex;
+
+	.page-numbers {
+		padding: 10px;
+		border: 1px solid #ddd;
+		min-width: 45px;
+		margin: 0 2px;
+		text-align: center;
+		font-weight: 500;
+		color: #000 !important;
+	}
+
+	// a.next.page-numbers,
+	// a.prev.page-numbers {
+	// 	cursor: not-allowed;
+	// }
+
+	a.page-numbers:hover,
+	span.page-numbers.current {
+		background: $color-primary;
+		color: #fff !important;
+		border-color: $color-primary;
+	}
+}

@@ -11771,4 +11771,52 @@ footer::before {
 .sag-added-to-wishlist .bi-heart::before {
   content: "\f415";
   color: #0d6efd;
+}
+
+.sag-card-block {
+  border-color: #e3e6ef;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.sag-mb-40 {
+  margin-bottom: 40px !important;
+}
+
+.sag-author-listing-posts-wrapper .row {
+  row-gap: 20px;
+}
+.sag-author-listing-posts-wrapper .sag-card-block {
+  height: 100%;
+}
+.sag-author-listing-posts-wrapper .sag-card-block h2, .sag-author-listing-posts-wrapper .sag-card-block .h2 {
+  margin: 15px auto 10px;
+  font-size: 18px;
+}
+.sag-author-listing-posts-wrapper .author-feature-image.no-img {
+  height: 378px;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.sag-pagination {
+  justify-content: center;
+  margin: 20px 0;
+  display: flex;
+}
+.sag-pagination .page-numbers {
+  padding: 10px;
+  border: 1px solid #ddd;
+  min-width: 45px;
+  margin: 0 2px;
+  text-align: center;
+  font-weight: 500;
+  color: #000 !important;
+}
+.sag-pagination a.page-numbers:hover,
+.sag-pagination span.page-numbers.current {
+  background: #1ab5c1;
+  color: #fff !important;
+  border-color: #1ab5c1;
 }/*# sourceMappingURL=main.css.map */
