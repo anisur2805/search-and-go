@@ -155,14 +155,6 @@ get_header(); ?>
                 </div>
                 <?php } ?>
 
-                <?php
-                global $sr_redux;
-                $fb_url = $sr_redux['facebook_url'];
-                $tt_url = $sr_redux['twitter_url'];
-                $ig_url = $sr_redux['instagram_url'];
-                $li_url = $sr_redux['linkedin_url'];
-                $vimeo_url = $sr_redux['vimeo_url'];
-                ?>
                 <div class="sag-listing-socials sag-listing-sidebar-item">
                     <h4 class="single-listing-title">Social Profiles</h4>
                     <?php echo sag_socials(); ?>

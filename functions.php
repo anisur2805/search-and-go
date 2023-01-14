@@ -374,20 +374,13 @@ function sag_add_remove_wishlist_all(){
 }
 
 // Socials share
-function sag_socials(){
-	global $sr_redux;
-	$fb_url = $sr_redux['facebook_url'];
-	$tt_url = $sr_redux['twitter_url'];
-	$ig_url = $sr_redux['instagram_url'];
-	$li_url = $sr_redux['linkedin_url'];
-	$vimeo_url = $sr_redux['vimeo_url'];
-	?>
+function sag_socials(){ ?>
 	<ul>
-		<li><a href="<?php echo esc_url($fb_url); ?>"><i class="fa fa-facebook"></i></a></li>
-		<li><a href="<?php echo esc_url($tt_url); ?>"><i class="fa fa-twitter"></i></a></li>
-		<li><a href="<?php echo esc_url($ig_url); ?>" href="#"><i class="fa fa-instagram"></i></a></li>
-		<li><a href="<?php echo esc_url($li_url); ?>" href="#"><i class="fa fa-linkedin"></i></a></li>
-		<li><a href="<?php echo esc_url($vimeo_url); ?>" href="#"><i class="fa fa-vimeo"></i></a></li>
+		<li><a href="<?php echo esc_url( get_option_value( 'facebook_url') ); ?>"><i class="fa fa-facebook"></i></a></li>
+		<li><a href="<?php echo esc_url( get_option_value( 'twitter_url') ); ?>"><i class="fa fa-twitter"></i></a></li>
+		<li><a href="<?php echo esc_url( get_option_value( 'instagram_url') ); ?>" href="#"><i class="fa fa-instagram"></i></a></li>
+		<li><a href="<?php echo esc_url( get_option_value( 'linkedin_url') ); ?>" href="#"><i class="fa fa-linkedin"></i></a></li>
+		<li><a href="<?php echo esc_url( get_option_value( 'vimeo_url') ); ?>" href="#"><i class="fa fa-vimeo"></i></a></li>
 	</ul>
 	<?php
 }
@@ -534,4 +527,20 @@ add_action('wp_ajax_ajax_fetch_posts', 'ajax_fetch_posts');
 function ajax_fetch_posts(){
 	$posts = get_posts(); 
 	wp_send_json($posts);
+}
+
+/**
+ * Undocumented Handle Redux so don't need to always check 
+ * before use Redux is install/ enable or not
+ *
+ * @param string $key
+ * @param string $default
+ * @return void
+ */
+function get_option_value( $key, $default = '' ){
+	if( class_exists( 'ReduxFramework' ) ) {
+		return Redux::get_option( 'sr_redux', $key, $default );
+	} else {
+		return $default;
+	}
 }

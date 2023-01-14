@@ -8,50 +8,34 @@
  *
  * @package Search_and_Go
  */
-if ( ! class_exists( 'Redux', false ) ) {
-	return;
-}
-global $sr_redux; 
-$sag_copyright_text = $sr_redux['copyright_text'];
-$logo = $sr_redux['footer_logo'];
-$vm_url = $sr_redux['vimeo_url'];
-$ig_url = $sr_redux['ig_url'];
-$tt_url = $sr_redux['tt_url'];
-$pt_url = $sr_redux['pt_url'];
-$fb_url = $sr_redux['fb_url'];
-$footer_bg = $sr_redux['footer_bg_image'];
-
-
-// var_dump($footer_bg['background-color']);
-
 ?>
 
-	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo $footer_bg['background-image'] ?>);background-position: <?php echo $footer_bg['background-position'] ?>;background-size: <?php echo $footer_bg['background-size'] ?>;">
+	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo esc_url( get_option_value( 'background-image') ); ?>);">
 		<div class="footer-top-holder">
 			<div class="container">
 				<div class="footer-top-holder-wrapper">
 					<div class="column column1">
 						<ul>
 							<li>
-								<a href="<?php echo esc_url($vm_url); ?>" class="fa fa-vimeo"></a>
+								<a href="<?php echo esc_url( get_option_value( 'vimeo_url') ); ?>" class="fa fa-vimeo"></a>
 							</li>
 							<li>
-								<a href="<?php echo esc_url($ig_url); ?>" class="fa fa-instagram"></a>
+								<a href="<?php echo esc_url( get_option_value( 'ig_url') ); ?>" class="fa fa-instagram"></a>
 							</li>
 							<li>
-								<a href="<?php echo esc_url($tt_url); ?>" class="fa fa-twitter"></a>
+								<a href="<?php echo esc_url( get_option_value( 'tt_url') ); ?>" class="fa fa-twitter"></a>
 							</li>
 							<li>
-								<a href="<?php echo esc_url($pt_url); ?>" class="fa fa-pinterest"></a>
+								<a href="<?php echo esc_url( get_option_value( 'pt_url') ); ?>" class="fa fa-pinterest"></a>
 							</li>
 							<li>
-								<a href="<?php echo esc_url($fb_url); ?>" class="fa fa-facebook"></a>
+								<a href="<?php echo esc_url( get_option_value( 'fb_url') ); ?>" class="fa fa-facebook"></a>
 							</li>
 						</ul>
 					</div>
 					<div class="column column2">
-						<a href="/">
-							<img src="<?php echo esc_url($logo['url']); ?>" alt="Logo" />
+						<a href="<?php home_url('/'); ?>">
+							<img src="<?php echo esc_url( get_option_value( 'footer_logo')['url']); ?>" alt="Logo" />
 						</a>
 					</div>
 					<div class="column column3">
@@ -66,7 +50,7 @@ $footer_bg = $sr_redux['footer_bg_image'];
 		<div class="footer-bottom-holder">
 			<div class="container">
 				<div class="site-info">
-					<?php echo $sag_copyright_text; ?>
+					<?php echo html_entity_decode( get_option_value( 'copyright_text') ); ?>
 				</div><!-- .site-info -->
 			</div>
 		</div>
@@ -75,7 +59,6 @@ $footer_bg = $sr_redux['footer_bg_image'];
 		</div>	
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
 <?php wp_footer(); ?>
 
 </body>

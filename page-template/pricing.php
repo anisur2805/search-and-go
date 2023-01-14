@@ -5,8 +5,8 @@
  */
 
 get_header();
-global $sr_redux;
-$pricing_id     = $sr_redux['pricing-rep-id'];
+
+$pricing_id     = get_option_value( 'pricing-rep-id' );
 unset($pricing_id['redux_repeater_data']);
 ?>
 <main id="primary" class="site-main sag-gallery-wrapper sag-gallery-masonry-wrapper">

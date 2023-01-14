@@ -1,19 +1,13 @@
 
 <?php
-
-if ( ! class_exists( 'Redux' ) ) {
-    return;
-}
-
-global $sr_redux; 
-$sag_header     = $sr_redux['quick-easy-header'];
-$quick_searches    = $sr_redux['quick-easy-section-rep-id'];
-
+    $sag_header         = $sr_redux['quick-easy-header'];
+    $quick_searches     = get_option_value( 'quick-easy-section-rep-id' );
 ?>
+<!-- Quick Search -->
 <section id="quick-search" class="quick-search" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/images/parallax2.jpg') ?>);">
     <div class="container">
         <div class="row">
-            <h2 class="section-title"><?php echo esc_html($sag_header); ?></h2>
+            <h2 class="section-title"><?php echo esc_html( get_option_value( 'quick-easy-header') ); ?></h2>
         </div>
         <div class="row">
             <?php 
@@ -26,9 +20,7 @@ $quick_searches    = $sr_redux['quick-easy-section-rep-id'];
                     echo '</div>';
                 }
             ?>
-
-        </div>
-          
         </div>
     </div>
 </section>
+<!-- #Quick Search -->
