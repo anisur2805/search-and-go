@@ -10,28 +10,12 @@
  */
 ?>
 
-	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo esc_url( get_option_value( 'background-image') ); ?>);">
+	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo esc_url( get_option_value( 'footer_bg_image')['background-image'] ); ?>);">
 		<div class="footer-top-holder">
 			<div class="container">
 				<div class="footer-top-holder-wrapper">
 					<div class="column column1">
-						<ul>
-							<li>
-								<a href="<?php echo esc_url( get_option_value( 'vimeo_url') ); ?>" class="fa fa-vimeo"></a>
-							</li>
-							<li>
-								<a href="<?php echo esc_url( get_option_value( 'ig_url') ); ?>" class="fa fa-instagram"></a>
-							</li>
-							<li>
-								<a href="<?php echo esc_url( get_option_value( 'tt_url') ); ?>" class="fa fa-twitter"></a>
-							</li>
-							<li>
-								<a href="<?php echo esc_url( get_option_value( 'pt_url') ); ?>" class="fa fa-pinterest"></a>
-							</li>
-							<li>
-								<a href="<?php echo esc_url( get_option_value( 'fb_url') ); ?>" class="fa fa-facebook"></a>
-							</li>
-						</ul>
+						<?php echo sag_socials(); ?>
 					</div>
 					<div class="column column2">
 						<a href="<?php home_url('/'); ?>">

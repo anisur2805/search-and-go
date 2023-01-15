@@ -16,25 +16,6 @@ Redux::set_section(
         'id'         => 'sag-socials-section',
         'icon'       => 'el el-user',
         'fields'     => array(
-            // array(
-                // 'id'       => 'social_links',
-                // 'type'     => 'repeater',
-                // 'title'    => __('Social Links', 'redux-framework-demo'),
-                // 'subtitle' => __('Add and manage your social media links', 'redux-framework-demo'),
-                // 'fields'   => array(
-                //     array(
-                //         'id'       => 'social_network',
-                //         'type'     => 'social_profiles',
-                //         'title'    => __('Social Network', 'redux-framework-demo'),
-                //         'subtitle' => __('Select the social network', 'redux-framework-demo'),
-                //     ),
-                //     array(
-                //         'id'       => 'social_url',
-                //         'type'     => 'text',
-                //         'title'    => __('URL', 'redux-framework-demo'),
-                //         'subtitle' => __('Enter the URLL for your social media profile', 'redux-framework-demo'),
-                //     ),
-                // ),
                 array(
                     'id'       => 'facebook_url',
                     'type'     => 'text',

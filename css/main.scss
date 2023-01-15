@@ -493,6 +493,8 @@ section#banner {
 // Single listing
 .single-location-wrapper {
 	background: #f8f8f8;
+	position: relative;
+	z-index: 2;
 	.single-listing-banner {
 		height: 300px;
 		background-position: center center;

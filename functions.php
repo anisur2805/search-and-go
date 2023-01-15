@@ -143,9 +143,7 @@ function sg_image_uploader_enqueue( $hooks ) {
     global $typenow;
     if( ($typenow == 'sag_listing') ) {
         wp_enqueue_media();
-
-		wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css', array(), time() );
-		wp_enqueue_style( 'sag-admin-css', get_template_directory_uri() . '/css/sag-admin.css', array(), time() );
+		wp_enqueue_style( 'sag-admin', get_template_directory_uri() . '/css/sag-admin.css', array(), time() );
         wp_register_script( 'sg-admin-js', get_template_directory_uri() . '/js/sag-admin.js', array( 'jquery' ) );
         wp_localize_script( 'sg-admin-js', 'sg_meta_image',
             array(
@@ -156,8 +154,10 @@ function sg_image_uploader_enqueue( $hooks ) {
         wp_enqueue_script( 'sg-admin-js' );
     }
 
+    wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), time() );
+
 	if( ( 'toplevel_page_sr_redux' == $hooks ) ) {
-		wp_enqueue_style( 'redux-override-css', get_template_directory_uri() . '/css/redux-override.css', array(), time() );
+		wp_enqueue_style( 'redux-override', get_template_directory_uri() . '/css/redux-override.css', array(), time() );
 	}
 
 	wp_register_script( 'sag-admin-post-js', get_template_directory_uri() . '/js/sag-admin-post.js', array( 'jquery', 'wp-api' ) );
@@ -197,6 +197,7 @@ function search_and_go_scripts() {
 	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
 	wp_enqueue_style( 'auto-complete-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css' );
 	wp_enqueue_style( 'slick-min', get_template_directory_uri() . '/css/slick.min.css', array(), time() );
+    wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), time() );
 	wp_enqueue_style( 'bootstrap-icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css' );
 	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/css/main.css', array(), time() );
 
@@ -280,7 +281,7 @@ require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
  * Redux Customize File 
  */
 require get_template_directory() . '/lib/redux-framework/config.php';
-require get_template_directory() . '/lib/redux-framework/metaboxes.php';
+// require get_template_directory() . '/lib/redux-framework/metaboxes.php';
 
 // Include Menu 
 require get_template_directory() . '/inc/Menu.php';
@@ -540,7 +541,7 @@ function ajax_fetch_posts(){
  *
  * @param string $key
  * @param string $default
- * @return void
+ * @return string
  */
 function get_option_value( $key, $default = '' ){
 	if( class_exists( 'ReduxFramework' ) ) {
