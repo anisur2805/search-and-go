@@ -10814,6 +10814,17 @@ select:focus-visible {
 .site-main {
   position: relative;
   z-index: 1;
+  background: #fff;
+}
+
+.site-header nav.navbar {
+  padding: 15px 30px;
+  background: var(--sg-primary);
+}
+@media (max-width: 1024px) {
+  .site-header nav.navbar .navbar-collapse {
+    margin-top: 20px;
+  }
 }
 
 section#banner {
@@ -11001,6 +11012,8 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
 
 .single-listing-item {
   background: #fff;
+  position: relative;
+  z-index: 1;
 }
 .single-listing-item .flex1 {
   flex: 1;
@@ -11205,6 +11218,8 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
 
 .single-location-wrapper {
   background: #f8f8f8;
+  position: relative;
+  z-index: 2;
 }
 .single-location-wrapper .single-listing-banner {
   height: 300px;
@@ -11401,13 +11416,13 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   resize: none;
 }
 .sag-form input[type=submit] {
-  border: 2px solid #1ab5c1;
+  border: 2px solid #0d6efd;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   text-transform: uppercase;
   padding: 6px 20px 6px 15px;
-  background: #1ab5c1;
+  background: #0d6efd;
   box-sizing: border-box;
   margin-top: 15px;
   width: auto;
@@ -11835,4 +11850,8 @@ footer::before {
   background: #1ab5c1;
   color: #fff !important;
   border-color: #1ab5c1;
+}
+
+.sag-comments {
+  padding: 40px 0 0;
 }/*# sourceMappingURL=main.css.map */

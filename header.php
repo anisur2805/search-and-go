@@ -23,22 +23,32 @@
 <body <?php body_class();?>>
 <?php wp_body_open();?>
 	<div id="page" class="site">
-		<header id="masthead" class="site-header">
+		<header id="masthead" class="site-header sticky-sm-top">
 			
 			<nav class="navbar navbar-expand-lg bg-light">
 				<div class="navbar-header">
 					<div class="site-branding">
+					<?php
+						if ( get_theme_mod( 'custom_logo' ) ):
+							the_custom_logo();
+						else: ?>
+						<a href="<?php echo esc_url( site_url() ); ?>">
+							<!-- <img alt="WooCom Logo" src="<?php // echo get_template_directory_uri() . "/assets/images/logo-for-website-2.png" ?>" /> -->
+							<h2 class="site-title"><a href="<?php echo esc_url( site_url( '/' ) ); ?>" title="<?php bloginfo( 'name' );?>" itemprop="url"><?php echo get_bloginfo( 'name' ); ?></a></h2>
+						</a>
+					<?php endif;
 
-						<?php
-						the_custom_logo();
-						?>
+					// $description = get_bloginfo( 'description' );
+					// if ( $description ) {
+					// 	echo sprintf( '<p class="site-description">%s</p>', esc_html( $description ) );
+					// }
+				?>
 					</div><!-- .site-branding -->
-
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-
 				</div>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<?php

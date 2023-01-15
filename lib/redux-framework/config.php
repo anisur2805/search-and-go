@@ -292,6 +292,7 @@ $kses_exceptions = array(
 
 require_once $redux_directory . '/sections/quick-easy/quick-easy.php';
 require_once $redux_directory . '/sections/list-item/list-item.php';
+require_once $redux_directory . '/sections/typography/typography.php';
 require_once $redux_directory . '/sections/place/place.php';
 require_once $redux_directory . '/sections/testimonials/testimonials.php';
 require_once $redux_directory . '/sections/pricing/pricing.php';

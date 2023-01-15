@@ -6,7 +6,7 @@
 // Option #1
 ?>
 
-<div class="comments">
+<div class="comments sag-comments">
 	<h2 class="comments-title">
 		<?php 
 			$sag_comment_numbers = get_comments_number();
