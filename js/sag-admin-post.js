@@ -5,7 +5,6 @@
         const loadRestPostBtn = document.getElementById( 'rest-fetch-posts' );
         const clearPostBtn = document.getElementById( 'reset-fetch-posts' );
         var textarea = document.getElementById( 'fetch-posts-container' );
-        console.log( textarea.value )
 
         // Fetch Post using AJAX
         if ( typeof ( loadAjaxPostBtn ) != 'undefined' && loadAjaxPostBtn != null ) {

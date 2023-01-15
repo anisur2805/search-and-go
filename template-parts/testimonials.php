@@ -7,9 +7,10 @@
     $testimonial_bg     = get_option_value( 'testimonials-bg' )[ 'background-image' ];
     $testimonial_bg     = (isset($testimonial_bg)) ? $testimonial_bg : esc_url(get_template_directory_uri() . '/images/parallax2.jpg');
 
-    unset( $testimonials['redux_repeater_data']);
+    // unset( $testimonials['redux_repeater_data']);
 
 ?>
+<!-- Testimonials Section -->
 <section id="testimonials-wrapper" class="testimonials-wrapper" style="background-image: url(<?php echo esc_url($testimonial_bg); ?>);">
     <div class="container">
         <div class="row">
@@ -32,3 +33,4 @@
         </div>
     </div>
 </section>
+<!-- #Testimonials Section -->

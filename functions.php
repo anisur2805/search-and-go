@@ -139,7 +139,7 @@ add_action( 'widgets_init', 'search_and_go_widgets_init' );
  *
  * @return void
  */
-function sg_image_uploader_enqueue() {
+function sg_image_uploader_enqueue( $hooks ) {
     global $typenow;
     if( ($typenow == 'sag_listing') ) {
         wp_enqueue_media();
@@ -155,6 +155,11 @@ function sg_image_uploader_enqueue() {
         );
         wp_enqueue_script( 'sg-admin-js' );
     }
+
+	if( ( 'toplevel_page_sr_redux' == $hooks ) ) {
+		wp_enqueue_style( 'redux-override-css', get_template_directory_uri() . '/css/redux-override.css', array(), time() );
+	}
+
 	wp_register_script( 'sag-admin-post-js', get_template_directory_uri() . '/js/sag-admin-post.js', array( 'jquery', 'wp-api' ) );
 	wp_enqueue_script('sag-admin-post-js');
 	wp_localize_script( 'sag-admin-post-js', 'obj',
@@ -272,10 +277,10 @@ require_once get_template_directory()."/lib/tgm/index.php";
  */
 require get_template_directory() . '/inc/Bootstrap-Nav-Walker.php';
 /**
- * Redux Customizer File 
+ * Redux Customize File 
  */
-require get_template_directory() . '/lib/redux-framework/redux-core/framework.php';
-require get_template_directory() . '/lib/redux-framework/sample/config.php';
+require get_template_directory() . '/lib/redux-framework/config.php';
+require get_template_directory() . '/lib/redux-framework/metaboxes.php';
 
 // Include Menu 
 require get_template_directory() . '/inc/Menu.php';

@@ -1,6 +1,6 @@
 
 <?php
-    $sag_header         = $sr_redux['quick-easy-header'];
+    $sag_header         = get_option_value( 'quick-easy-header' );
     $quick_searches     = get_option_value( 'quick-easy-section-rep-id' );
 ?>
 <!-- Quick Search -->

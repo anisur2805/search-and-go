@@ -1,3 +1,4 @@
+<!-- Discover Places Section -->
 <section id="discover-places" class="discover-places bg-gray-300">
     <div class="container">
         <div class="row">
@@ -59,3 +60,4 @@
         </div>
     </div>
 </section>
+<!-- #Discover Places Section -->

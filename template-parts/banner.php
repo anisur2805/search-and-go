@@ -5,6 +5,7 @@ $terms = get_terms(
     )
 );
 ?>
+<!-- Banner Section -->
 <section id="banner" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/images/home-image-new.jpg') ?>);">
     <div class="container">
         <div class="row">
@@ -33,3 +34,4 @@ $terms = get_terms(
         </div>
     </div>
 </section>
+<!-- #Banner Section -->

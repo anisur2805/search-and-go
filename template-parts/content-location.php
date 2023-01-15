@@ -1,4 +1,5 @@
-<section class="locations-section bg-opacity-50 bg-body">
+<!-- Locations Section -->
+<section class="locations-section bg-body">
     <div class="container">
         <div class="row text-center">
             <h2 class="section-title"> Most Popular Locations </h2>
@@ -31,5 +32,4 @@
         </div>
     </div>
 </section>
-
-<?php
+<!-- #Locations Section -->

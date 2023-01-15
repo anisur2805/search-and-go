@@ -1,0 +1,59 @@
+:root {
+    --rd-primary: #1ab5c1;
+    --rd-secondary: #1ab5c1;
+    --rd-ancient: #0073aa;
+    --rd-normal: #00a0d2;
+    --rd-default: #135e96;
+    --rd-white: #fff;
+    --rd-button: #0e2e50;
+    --rd-button-hover: #00c194;
+}
+
+body.wp-core-ui .redux-container .button-primary {
+    background: var(--rd-button-hover);
+    border-color: var(--rd-button-hover);
+    color: var(--rd-white) !important;
+}
+
+body.wp-core-ui .redux-container #redux-header {
+    border-color: var(--rd-button-hover) !important;
+    background: var(--rd-button-hover) !important;
+}
+
+body.wp-core-ui .redux-container .redux-sidebar .redux-group-menu li.active a {
+    background-color: var(--rd-button-hover) !important;
+    color: var( --rd-white ) !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+}
+
+body.wp-core-ui .redux-container .redux-sidebar .redux-group-menu li a:hover {
+    background: var(--rd-button-hover) !important;
+    color: #777;
+    opacity: 1;
+    -webkit-box-shadow: inset 4px 0 0 0 currentColor;
+    box-shadow: inset 4px 0 0 0 currentColor;
+}
+
+body.wp-core-ui .redux-container .button-primary.focus, 
+body.wp-core-ui .redux-container .button-primary.hover, 
+body.wp-core-ui .redux-container .button-primary:focus, 
+body.wp-core-ui .redux-container .button-primary:hover {
+    border-color: var(--rd-button-hover);
+    color: var(--rd-white);
+    background: var(--rd-button-hover);
+}
+
+body.wp-core-ui .redux-container .button, 
+body.wp-core-ui .redux-container .button-secondary {
+    color: var(--rd-button);
+    vertical-align: top;
+}
+
+body.wp-core-ui .redux-container .redux-sidebar .redux-group-menu {
+    background-color: var(--rd-button);
+}
+
+body.wp-core-ui .redux-container .redux-action_bar input {
+    margin: 0 2px !important;
+}
