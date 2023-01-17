@@ -26,29 +26,27 @@
       nextArrow: '<button class="slick-next slick-arrow" aria-label="Next" type="button" style=""><i class="bi bi-arrow-right"></i></button>'
     } );
 
-    $('.single-post-item-content').on('click', '.sag-wishlist', function( e ){
+    $('body').on('click', '.sag-wishlist', function( e ){
       e.preventDefault();
 
       var self = $( this ),
-        wishlist_id = self.data('wishlist-id' );
+          wishlist_id = self.data('wishlist-id' );
 
       var data = {
         'wishlist_post_id': wishlist_id,
         'action': 'sag_wishlist_action',
-        'post_id': $( this ).data( 'wishlist-id' )
+        'post_id': wishlist_id
       };
 
       $.post( sagObj.ajaxUrl, data, function ( res ) {
         var post_id = data['post_id'].toString();
         var staElement = $( '.sag-wishlist_' + post_id );
-        var data_id = staElement.attr( 'data-wishlist-id' );
+        var data_id = staElement.data( 'wishlist-id' );
 
-        if ( "false" === res ) {
+        if ( 'false' == res ) {
           staElement.removeClass( 'sag-added-to-wishlist' );
-          console.log( "removed" )
         } else {
-          if ( data_id === post_id ) {
-            console.log( "added" )
+          if ( data_id == post_id ) {
             staElement.addClass( 'sag-added-to-wishlist' );
           }
         }
