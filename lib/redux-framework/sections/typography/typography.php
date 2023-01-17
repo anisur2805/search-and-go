@@ -5,7 +5,7 @@ Redux::set_section(
     $opt_name, array(
         'title' => esc_html__( 'Typography', 'your-textdomain-here' ),
         'id'    => 'typography-section',
-        'icon'  => 'el el-quotes',
+        'icon'  => 'el el-font',
         'fields' => array(
 			array(
 				'id'                => 'opt-typography-body',

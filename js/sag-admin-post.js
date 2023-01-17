@@ -4,7 +4,7 @@
         const loadAjaxPostBtn = document.getElementById( 'ajax-fetch-posts' );
         const loadRestPostBtn = document.getElementById( 'rest-fetch-posts' );
         const clearPostBtn = document.getElementById( 'reset-fetch-posts' );
-        var textarea = document.getElementById( 'fetch-posts-container' );
+        const textarea = document.getElementById( 'fetch-posts-container' );
 
         // Fetch Post using AJAX
         if ( typeof ( loadAjaxPostBtn ) != 'undefined' && loadAjaxPostBtn != null ) {
@@ -24,13 +24,13 @@
             } )
         }
 
-        // Fetch Post using AJAX
+        // Fetch Post using Rest API ( Backbone JS )
         if ( typeof ( loadRestPostBtn ) != 'undefined' && loadRestPostBtn != null ) {
             loadRestPostBtn.addEventListener( 'click', function () {
                 var postsCollection = new wp.api.collections.Posts();
-                postsCollection.fetch( { data: { per_page: 8 } } ).done(function(posts){
-                    posts.forEach( function ( post ) {
-                        console.log( "post ", post )
+                postsCollection.fetch().done(function( posts ){
+                    posts.forEach( function( post ) {
+                        console.log( 'post ', post )
                         textarea.append( post.title.rendered + '\n' )
                     } )
                 })
@@ -39,7 +39,7 @@
         }
 
         if ( typeof ( clearPostBtn ) != 'undefined' && clearPostBtn != null ) {
-            clearPostBtn.addEventListener( "click", function () {
+            clearPostBtn.addEventListener( 'click', function () {
                 textarea.value = ''
             } )
         }

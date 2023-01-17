@@ -284,8 +284,8 @@ require get_template_directory() . '/lib/redux-framework/config.php';
 // require get_template_directory() . '/lib/redux-framework/metaboxes.php';
 
 // Include Menu 
-require get_template_directory() . '/inc/Menu.php';
-
+require get_template_directory() . '/inc/MenusController.php';
+( new MenusController() );
 // Custom excerpt length 
 function sg_custom_excerpt_length( $length ) {
 	if ( get_post_type( get_the_ID() ) == 'sag_listing' ) {
