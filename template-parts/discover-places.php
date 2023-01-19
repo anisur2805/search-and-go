@@ -32,14 +32,15 @@
                 );
                 $the_query      = new WP_Query( $args );
                 $user_id        = get_current_user_id();
-                $wish_class     = is_wishlist() ? 'sag-added-to-wishlist' : '';
-                echo '<pre>';
-                      print_r( [is_wishlist(), $wish_class ] );
-                echo '</pre>';
+                
+                // echo '<pre>';
+                //       print_r( [is_wishlist(), $wish_class ] );
+                // echo '</pre>';
         
                 if($the_query->have_posts()):
                     while($the_query->have_posts()):
                         $the_query->the_post();
+                        $wish_class     = is_wishlist( get_the_ID() ) ? ' sag-added-to-wishlist ' : '';
                         echo '<div class="col-md-4 single-post-item wl-single-post-item single-post-id-'.get_the_ID().'" data-post_id='.get_the_ID().'>';
                             if(has_post_thumbnail()) {
                                 echo '<a href="'.get_the_permalink().'">'.get_the_post_thumbnail().'</a>';

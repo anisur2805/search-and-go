@@ -26,6 +26,7 @@
       nextArrow: '<button class="slick-next slick-arrow" aria-label="Next" type="button" style=""><i class="bi bi-arrow-right"></i></button>'
     } );
 
+    // Wishlist 
     $('body').on('click', '.sag-wishlist', function( e ){
       e.preventDefault();
 
@@ -42,10 +43,14 @@
         var post_id = data['post_id'].toString();
         var staElement = $( '.sag-wishlist_' + post_id );
         var data_id = staElement.data( 'wishlist-id' );
-
-        if ( 'false' == res ) {
+        console.log( res )
+        if ( "login_required" == res ) {
+          alert("Please login to add favorite")
+        } else if ( "in_array" == res ) {
+          console.log( "help" )
           staElement.removeClass( 'sag-added-to-wishlist' );
         } else {
+          console.log( "go away" )
           if ( data_id == post_id ) {
             staElement.addClass( 'sag-added-to-wishlist' );
           }
@@ -73,7 +78,7 @@
       $( 'html, body' ).animate( { scrollTop: 0 }, '300' );
     } );
 
-    // init Masonry
+    // Masonry Blog Post
     var $grid = $( '.grid' ).masonry( {
       itemSelector: '.grid-item',
       percentPosition: true,

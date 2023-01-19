@@ -57,29 +57,38 @@ function the_wishlist_link( $post_id = 0 ) {
 
         $wishlists = sag_get_user_wishlist( get_current_user_id() );
         if ( in_array( $post_id, $wishlists ) ) {
+			$data = 'in_array';
+			echo  esc_attr( $data );
             return '<a href="javascript:void(0)" class="sag-wishlist sag-added-to-wishlist sag-wishlist_"' .$post_id .' data-post_id="' . $post_id . '" data-wishlist-id='.$post_id.'></a>';
         } else {
-            return '<a href="javascript:void(0)" class="sag-wishlist sag-wishlist_" data-post_id="' . $post_id . '" data-wishlist-id='.$post_id.'></a>';
+			$data = 'not_in_array';
+			echo esc_attr( $data );
+            // return '<a href="javascript:void(0)" class="sag-wishlist sag-wishlist_" data-post_id="' . $post_id . '" data-wishlist-id='.$post_id.'></a>';
         }
     } else {
-        return '<a href="javascript:void(0)" class="sag-require-login"><i class="fa fa-heart"></i>"</a>';
+        // return '<a href="javascript:void(0)" class="sag-require-login"><i class="fa fa-heart"></i>"</a>';
+		$data = 'login_required';
+		echo esc_attr( $data );
+		wp_die();
     }
 }
 
 function sag_get_user_wishlist( $user_id = 0 ) {
-	$wishlist = get_user_meta( $user_id, 'sag_wishlist', true );
+	$wishlists = get_user_meta( $user_id, 'sag_wishlist', true );
 
-	if ( ! empty( $wishlist ) && is_array( $wishlist ) ) {
-		$wishlist = sag_prepare_user_wishlist( $wishlist );
+	if ( ! empty( $wishlists ) && is_array( $wishlists ) ) {
+		$wishlists = sag_prepare_user_wishlist( $wishlists );
 	} else {
-		$wishlist = array();
+		$wishlists = array();
 	}
 
-	return $wishlist;
+	$wishlists = apply_filters( 'sag_user_wishlists', $wishlists, $user_id );
+
+	return $wishlists;
 }
 
-function sag_delete_user_wishlist( $user_id = 0, $listing_id = 0 ) {
-	// if ( get_post_type( $listing_id ) !== ATBDP_POST_TYPE ) {
+function sag_delete_user_wishlist( $user_id = 0, $listing_id = 271 ) {
+	// if ( get_post_type( $listing_id ) !== 'sag_listing' ) {
 	// 	return array();
 	// }
 
@@ -87,10 +96,12 @@ function sag_delete_user_wishlist( $user_id = 0, $listing_id = 0 ) {
 	$new_wishlists = array_filter( $old_wishlists, static function( $wishlist ) use ( $listing_id ) {
 		return ( $wishlist !== $listing_id );
 	} );
-
-	if ( count( $old_wishlists ) > count( $new_wishlists ) ) {
+	
+	if( in_array( $listing_id, $old_wishlists) ) {
 		update_user_meta( $user_id, 'sag_wishlist', $new_wishlists );
-	}
+	}	
+
+	do_action( 'sag_user_wishlists_deleted', $user_id, $new_wishlists, $old_wishlists );
 
 	return $new_wishlists;
 }
@@ -111,16 +122,16 @@ function sag_add_user_wishlist( $user_id = 0, $listing_id = 0 ) {
 	return $new_wishlist;
 }
 
-function is_wishlist() {
-	$wishlist = sag_get_user_wishlist( get_current_user_id() );
-	return in_array( get_the_id() , $wishlist );
+function is_wishlist( $post_id = 0) {
+	$wishlists = sag_get_user_wishlist( get_current_user_id() );
+	return in_array( $post_id, $wishlists );
 }
 
 add_action('wp_ajax_sag_wishlist_action', 'sag_add_remove_wishlist_all');
 add_action('wp_ajax_nopriv_sag_wishlist_action', 'sag_add_remove_wishlist_all');
 function sag_add_remove_wishlist_all(){
 	// TODO: need to check nonce here
-	$sag_wishlist_id  	= isset( $_POST['wishlist_post_id'] ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : 0;
+	$sag_wishlist_id  	= ( isset( $_POST['wishlist_post_id'] ) ) ? sanitize_text_field( $_POST['wishlist_post_id'] ) : 0;
 	$user_id = get_current_user_id();
 	$wishlist = sag_get_user_wishlist( $user_id );
 
