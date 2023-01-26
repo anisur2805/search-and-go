@@ -50,14 +50,14 @@
 // if ( $comments ) {
 // 	foreach ( $comments as $comment ) {
 		?>
-		<!-- <div class="d-flex" data-comment_id="<?php esc_attr_e($comment->comment_ID); ?>">
+		<!-- <div class="d-flex" data-comment_id="<?php //esc_attr_e($comment->comment_ID); ?>">
 			<div class="flex-shrink-0">
-				<?php echo get_avatar( $comment ); ?>
+				<?php //echo get_avatar( $comment ); ?>
 			</div>
 			<div class="flex-grow-1 ms-3">
-				<h5><?php esc_attr_e( comment_author( $comment ) ); edit_comment_link(); ?></h5>
-				<?php esc_attr_e( comment_text( $comment ) ); ?>
-				<?php comment_date('n-j-Y'); ?>
+				<h5><?php //esc_attr_e( comment_author( $comment ) ); edit_comment_link(); ?></h5>
+				<?php //esc_attr_e( comment_text( $comment ) ); ?>
+				<?php //comment_date('n-j-Y'); ?>
 			</div>
 		</div> -->
 		<?php

@@ -17,8 +17,10 @@ get_header(); ?>
 
             <?php
                 $categories = get_the_terms( $post->ID, 'sag_category' );
-                foreach( $categories as $category ) {
-                    echo '<p><a href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></p>';
+                if( is_array( $categories ) ) {
+                    foreach( $categories as $category ) {
+                        echo '<p><a href="'. get_category_link( $category->term_id ) .'">'. $category->name .'</a></p>';
+                    }
                 }
             ?>
 
