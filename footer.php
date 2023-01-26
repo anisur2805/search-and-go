@@ -8,9 +8,28 @@
  *
  * @package Search_and_Go
  */
+
+ // Check BG Image
+$bg_image = get_option_value( 'footer_bg_image');
+if(!is_null($bg_image) && is_array($bg_image) && array_key_exists('background-image', $bg_image)) {
+$bg_url = $bg_image['background-image'];
+// Use $bg_url to set the background image
+} else {
+$bg_url = '';
+}
+
+// Check URL
+$footer_logo = get_option_value( 'footer_logo');
+if(!is_null($footer_logo) && is_array($footer_logo) && array_key_exists('url', $footer_logo)) {
+$logo_url = $footer_logo['url'];
+// Use $logo_url to set the background image
+} else {
+$logo_url = '';
+}
+
 ?>
 
-	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo esc_url( get_option_value( 'footer_bg_image')['background-image'] ); ?>);">
+	<footer id="colophon" class="site-footer" style="background-image: url(<?php echo esc_url( $bg_url ); ?>);">
 		<div class="footer-top-holder">
 			<div class="container">
 				<div class="footer-top-holder-wrapper">
@@ -19,7 +38,7 @@
 					</div>
 					<div class="column column2">
 						<a href="<?php home_url('/'); ?>">
-							<img src="<?php echo esc_url( get_option_value( 'footer_logo')['url']); ?>" alt="Logo" />
+							<img src="<?php echo esc_url( $logo_url ); ?>" alt="Logo" />
 						</a>
 					</div>
 					<div class="column column3">
