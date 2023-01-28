@@ -283,7 +283,7 @@ function sag_socials() {?>
                     'location' => urlencode( $location ),
                 ];
 				
-				$site_url =  site_url( '/listing-item/' );
+				$site_url =  site_url( '/sag-listing/' );
                 $redirect_url = add_query_arg( array(
 					'keyword'  => urlencode( $keyword ),
                     'category' => urlencode( $category ),

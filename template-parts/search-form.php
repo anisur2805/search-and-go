@@ -37,7 +37,7 @@ $cats = get_terms(
         <div class="sg-filter-row-category flex1 mb-20px">
             <h5><?php _e('Category', 'search-and-go'); ?></h5>
             <select name="sag_category" class="sag_category" id="sag_category">
-                <option value="">All</option>
+                <option value="all">All Category</option>
                 <?php
                 foreach ($cats as $cat) {
                     $cat_meta  = get_term_meta($cat->term_id, 'sg_term_icon', true);
@@ -60,6 +60,7 @@ $cats = get_terms(
                 'taxonomy'         => 'sag_location',
                 'name'             => 'sag_location',
                 'value_field'      => 'slug',
+                'option_none_value' => 'all',
                 'class'            => 'sag_location',
             );
             wp_dropdown_categories($args);

@@ -25,10 +25,11 @@
                 <div class="row sg-result-row">
                     <div class="sg-result-posts">
                         <?php
-                            $url            = site_url().$_SERVER['REQUEST_URI'];
-                            $extract_url    = explode('/', $url);
-                            $location_item  = $extract_url[sizeof($extract_url)-2];
-                            
+                            // $url            = site_url().$_SERVER['REQUEST_URI'];
+                            // $extract_url    = explode('/', $url);
+                            // $location_item  = $extract_url[sizeof($extract_url)-2];
+                            $get_keyword    = (isset( $_GET['keyword'])) ? esc_attr($_GET['keyword']) : '';
+
                             $sg_location_args = array(
                                 'post_type'      => 'sag_listing',
                                 'post_status'    => 'publish',
@@ -37,11 +38,14 @@
                                     array(
                                         'taxonomy' => 'sag_location',
                                         'field'    => 'slug',
-                                        'terms'    => $location_item,
+                                        'terms'    => $get_keyword, //$location_item,
                                     ),
                                 ),
                             );
                             $location_query =  new WP_Query( $sg_location_args );
+                            // echo '<pre>';
+                            //       print_r( [$url, $extract_url, $location_item, $location_item, $location_query->found_posts] );
+                            // echo '</pre>';
                             
                         ?>
                             <?php 
