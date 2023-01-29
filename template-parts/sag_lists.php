@@ -9,7 +9,9 @@
     $sg_location_args = array(
         'post_type'      => 'sag_listing',
         'post_status'    => 'publish',
-        'posts_per_page' => -1,
+        // 'posts_per_page' => -1,
+        'posts_per_page' => 2,
+        'paged'          => 1,
         'tax_query'      => array(
             'relation' => 'OR',
             array(
@@ -61,43 +63,30 @@
 
                 <div class="row sg-result-row">
                     <div class="sg-result-posts">
-
-                            <?php
-                                if ( $location_query->have_posts() ) {
-                                    echo '<ul>';
-                                    while ( $location_query->have_posts() ) {
-                                    $location_query->the_post();?>
-                                            <li>
-                                                <div class="sg-feature-img">
-                                                    <a href=<?php echo get_the_permalink(); ?>>
-                                                        <?php if ( has_post_thumbnail() ) {
-                                                                        the_post_thumbnail( 'large', array( 'class' => 'img-fluid' ) );
-                                                                    } else {
-                                                                        echo '<img src="https://cdn.pixabay.com/photo/2022/11/07/18/33/hibiscus-7577002_960_720.jpg" class="img-fluid" />';
-                                                                }?>
-                                                    </a>
-                                                </div>
-                                                <div class="sg-result-content">
-                                                    <h3 class="sg-listing-title">
-                                                        <a href=<?php echo get_the_permalink(); ?>>
-                                                            <?php the_title();?>
-                                                        </a>
-                                                    </h3>
-                                                    <span class="sg-listing-item-address"> <span>Avinguda del Marquès de l'Argentera, 15, 08003 Barcelona, Spain</span> </span>
-                                                    <p class="sg-post-excerpt"><?php echo get_the_excerpt(); ?></p>
-                                                </div>
-                                            </li>
-                                        <?php
-                                            }
-                                                echo '</ul>';
-                                                wp_reset_postdata();
-                                            } else {
-                                                _e( 'No Posts found!', 'search-and-go' );
-                                            }
-
-                                        ?>
-
+                        <?php
+                        if ( $location_query->have_posts() ) {
+                            echo '<ul>';
+                                while ( $location_query->have_posts() ) {
+                                    $location_query->the_post();
+                                    get_template_part('template-parts/sag', 'posts');
+                                }
+                            echo '</ul>';
+                            wp_reset_postdata();
+                        } else {
+                            _e( 'No Posts found!', 'search-and-go' );
+                        } ?>
                     </div>
+
+                    <?php if( $location_query->max_num_pages > 1) { ?>
+                        <div class="load-more-posts yeeeeeeee">
+                            <?php //wp_nonce_field('sag-load-more-posts'); ?>
+                            <!-- <input type="hidden" name="load-more-nonce" value="<?php //echo wp_create_nonce('load-more'); ?>" /> -->
+                            <!-- <input type="hidden" name="action" value="sag_load_more_post" />  -->
+                            <button type="submit" class="sag-button sag-load-more mx-auto" name="sag-load-more"><?php _e('Load More'); ?></button>
+                        </div>
+                    <?php } else {
+                        echo 'Nooooooooooo';
+                    }?>
                 </div>
             </div>
         </div>

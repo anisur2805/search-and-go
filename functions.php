@@ -179,6 +179,8 @@
      * Enqueue scripts and styles.
      */
     function search_and_go_scripts() {
+        global $wp_query; 
+
         wp_enqueue_style( 'search-and-go-style', get_stylesheet_uri(), array(), _S_VERSION );
         wp_style_add_data( 'search-and-go-style', 'rtl', 'replace' );
 
@@ -194,6 +196,10 @@
         wp_enqueue_script( 'main-script-js', get_template_directory_uri() . '/js/main.js', array( 'jquery-auto-complete-ui', 'slick-js' ), time(), true );
         wp_localize_script( 'main-script-js', 'sagObj', array(
             'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+            'error'   => __('Something went wrong'),
+            'posts' => serialize( $wp_query->query_vars ),
+            'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
+		    'max_page' => $wp_query->max_num_pages
         ) );
 
         wp_enqueue_script( 'jquery-masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js' );
@@ -439,4 +445,31 @@ OUTPUT;
             } else {
                 return $default;
             }
+    }
+
+
+    add_action('wp_ajax_sag_load_more_posts', 'sag_load_more_posts');
+    function sag_load_more_posts(){
+        // if( !wp_verify_nonce( $_REQUEST['_wpnonce'], 'sag-load-more-posts') ) {
+        //     wp_send_json_error([
+        //         'message' => __('Nonce verification failed')
+        //     ]);
+        // } else {
+
+            // prepare our arguments for the query
+            $args = json_decode( stripslashes( $_POST['query'] ), true );
+            $args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+            $args['post_status'] = 'publish';
+            $args['post_type']   = 'sag_listing';
+
+            query_posts( $args );
+        
+            if( have_posts() ) :
+                while( have_posts() ): the_post();
+                   get_template_part('template-parts/sag', 'posts');
+                endwhile;
+ 
+            endif;
+            die;
+        // }
     }
