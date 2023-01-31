@@ -197,9 +197,13 @@
         wp_localize_script( 'main-script-js', 'sagObj', array(
             'ajaxUrl' => admin_url( 'admin-ajax.php' ),
             'error'   => __('Something went wrong'),
-            'posts' => serialize( $wp_query->query_vars ),
-            'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
-		    'max_page' => $wp_query->max_num_pages
+            ) );
+            
+        wp_enqueue_script( 'load-more', get_template_directory_uri() . '/js/load-more.js', array(), time(), true );
+        wp_localize_script( 'load-more', 'load_obj', array(
+            'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+            'error'   => __('Something went wrong'),  
+            'security' => wp_create_nonce( 'load-more-nonce' ),
         ) );
 
         wp_enqueue_script( 'jquery-masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js' );
@@ -448,28 +452,41 @@ OUTPUT;
     }
 
 
-    add_action('wp_ajax_sag_load_more_posts', 'sag_load_more_posts');
-    function sag_load_more_posts(){
-        // if( !wp_verify_nonce( $_REQUEST['_wpnonce'], 'sag-load-more-posts') ) {
-        //     wp_send_json_error([
-        //         'message' => __('Nonce verification failed')
-        //     ]);
-        // } else {
+    add_action('wp_ajax_sag_load_more_post', 'sag_load_more_post');
+    add_action('wp_ajax_nopriv_sag_load_more_post', 'sag_load_more_post');
+    function sag_load_more_post(){
+        if( !wp_verify_nonce( $_POST['security'], 'load-more-nonce') ) {
+            wp_send_json_error([
+                'message' => __('Nonce verification failed')
+            ]);
+        } else {
+
+            $paged = $_POST['paged'];
+            $posts_per_page = 1;
+            $args = array(
+                'post_type' => 'sag_listing',
+                'posts_per_page' => $posts_per_page,
+                'paged'             => $paged
+            );
+            $query = new WP_Query( $args );
 
             // prepare our arguments for the query
-            $args = json_decode( stripslashes( $_POST['query'] ), true );
-            $args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
-            $args['post_status'] = 'publish';
-            $args['post_type']   = 'sag_listing';
+            // $args = json_decode( stripslashes( $_POST['query'] ), true );
+            // $args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
+            // $args['post_status'] = 'publish';
+            // $args['post_type']   = 'sag_listing';
 
-            query_posts( $args );
+            // query_posts( $args );
         
-            if( have_posts() ) :
-                while( have_posts() ): the_post();
+            if( $query->have_posts() ) :
+                while( $query->have_posts() ): $query->the_post();
                    get_template_part('template-parts/sag', 'posts');
                 endwhile;
  
             endif;
-            die;
-        // }
+            wp_reset_postdata();
+
+            // wp_die();
+            wp_send_json_success();
+        }
     }

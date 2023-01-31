@@ -10,7 +10,7 @@
         'post_type'      => 'sag_listing',
         'post_status'    => 'publish',
         // 'posts_per_page' => -1,
-        'posts_per_page' => 2,
+        'posts_per_page' => 1,
         'paged'          => 1,
         'tax_query'      => array(
             'relation' => 'OR',
@@ -82,7 +82,7 @@
                             <?php //wp_nonce_field('sag-load-more-posts'); ?>
                             <!-- <input type="hidden" name="load-more-nonce" value="<?php //echo wp_create_nonce('load-more'); ?>" /> -->
                             <!-- <input type="hidden" name="action" value="sag_load_more_post" />  -->
-                            <button type="submit" class="sag-button sag-load-more mx-auto" name="sag-load-more"><?php _e('Load More'); ?></button>
+                            <button type="submit" class="sag-button sag-load-more mx-auto" name="sag-load-more" data-paged="1"><?php _e('Load More'); ?></button>
                         </div>
                     <?php } else {
                         echo 'Nooooooooooo';
