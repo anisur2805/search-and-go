@@ -11854,4 +11854,37 @@ footer::before {
 
 .sag-comments {
   padding: 40px 0 0;
+}
+
+.sag-load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.loading .spin {
+  -webkit-animation: spin infinite linear 320ms;
+          animation: spin infinite linear 320ms;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=main.css.map */

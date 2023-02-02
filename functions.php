@@ -461,32 +461,51 @@ OUTPUT;
             ]);
         } else {
 
-            $paged = $_POST['paged'];
-            $posts_per_page = 1;
-            $args = array(
-                'post_type' => 'sag_listing',
-                'posts_per_page' => $posts_per_page,
-                'paged'             => $paged
-            );
-            $query = new WP_Query( $args );
+        $get_keyword  = isset( $_GET['keyword'] ) ? esc_attr( $_GET['keyword'] ) : '';
+        $get_category = isset( $_GET['category'] ) ? esc_attr( $_GET['category'] ) : '';
+        $get_location = isset( $_GET['location'] ) ? esc_attr( $_GET['location'] ) : 'rajshahi';
 
-            // prepare our arguments for the query
-            // $args = json_decode( stripslashes( $_POST['query'] ), true );
-            // $args['paged'] = $_POST['page'] + 1; // we need next page to be loaded
-            // $args['post_status'] = 'publish';
-            // $args['post_type']   = 'sag_listing';
+        $paged = $_POST['paged'] + 1;
+        $posts_per_page = 3;
 
-            // query_posts( $args );
-        
+        $sg_location_args = array(
+            'post_type'      => 'sag_listing',
+            'post_status'    => 'publish',
+            'posts_per_page' => $posts_per_page,
+            'paged'          => $paged,
+            'tax_query'      => array(
+                'relation' => 'OR',
+                array(
+                    'taxonomy' => 'sag_keywords',
+                    'field'    => 'slug',
+                    'terms'    => $get_keyword,
+                ),
+                array(
+                    'taxonomy' => 'sag_location',
+                    'field'    => 'slug',
+                    'terms'    => $get_location,
+                ),
+                array(
+                    'taxonomy' => 'sag_category',
+                    'field'    => 'slug',
+                    'terms'    => $get_category,
+                ),
+            ),
+        ); 
+
+            $query = new WP_Query( $sg_location_args );
+
             if( $query->have_posts() ) :
                 while( $query->have_posts() ): $query->the_post();
-                   get_template_part('template-parts/sag', 'posts');
+                    get_template_part('template-parts/sag', 'posts');
                 endwhile;
- 
             endif;
+
             wp_reset_postdata();
 
-            // wp_die();
-            wp_send_json_success();
+            $data =ob_get_clean();
+            wp_send_json_success( [
+                'data' => $data
+            ] );
         }
     }

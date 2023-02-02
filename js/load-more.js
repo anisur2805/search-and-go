@@ -2,48 +2,58 @@
     $( document ).ready( function () {
 
         // Ajax load more posts
-        $( '.sag-load-more' ).on( 'click', function ( e ) {
+        $( '.sag-load-more:not(.loading)' ).on( 'click', function ( e ) {
             e.preventDefault();
-            // alert('fuck')
+
             var $button = $( this );
-            var paged = $button.data( 'paged' );
-            console.log( paged )
-            // var $loading = $( '<div class="loading-animation"></div>' );
-            // $button.before( $loading );
+            var paged = $button.data( 'paged' ),
+                newPaged = paged + 1,
+                $loading = $( '<div class="loading-animation"></div>' );
+
+            $button.before( $loading );
             $button.hide();
             var data = {
                 action: 'sag_load_more_post',
                 security: load_obj.security,
+                dataType: 'json',
                 paged: paged
             }
 
-            console.log( data )
+            $button.addClass( 'loading' ).find( '.text' ).slideUp( 320 );
+            $button.find( '.sag-icon' ).addClass( 'spin' )
 
             $.post( load_obj.ajaxUrl, data, function ( response ) {
                 if ( response.success ) {
-                    console.log( "res ", response )
-                    // console.log( response.data )
-                    // $loading.remove();
-                    // var data = response.data;
-                    // if ( data.length > 0 ) {
-                    //     // $.each(data, function(index, post) {
-                    //     $( '.sg-result-posts ul' ).append( post );
-                    //     // });
 
-                    //     $button.data( 'paged', paged + 1 );
-                    //     $button.show();
-                    // } else {
-                    //     $button.text( 'No More Posts' );
-                    // }
-                    // } else {
-                    // console.log( 'vua' )
+                    $loading.remove();
+                    var data = response.data.data;
+
+                    if ( data ) {
+                        setTimeout( () => {
+
+                            $( '.sg-result-posts ul' ).append( data );
+                            $button.data( 'paged', newPaged ); 
+
+                            $button.removeClass( 'loading' ).find( '.text' ).slideDown( 320 )
+                            $button.find( '.sag-icon' ).removeClass( 'spin' )
+                            
+                        }, 2000 );
+
+                        $button.data( 'paged', paged + 1 );
+                        $button.show();
+                    } else {
+                        $button.text( 'No More Posts' );
+                    }
+
+                    
+
                 } else {
-                    console.log( 'amar' )
+                    console.log( 'vua' )
                 }
             } )
                 .fail( function ( err ) {
-                    alert( 'Something went wrong'+ err.message )
-                    console.dir(err)
+                    alert( 'Something went wrong' + err.message )
+                    console.dir( err )
                 } )
         } );
 

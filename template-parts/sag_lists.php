@@ -82,7 +82,14 @@
                             <?php //wp_nonce_field('sag-load-more-posts'); ?>
                             <!-- <input type="hidden" name="load-more-nonce" value="<?php //echo wp_create_nonce('load-more'); ?>" /> -->
                             <!-- <input type="hidden" name="action" value="sag_load_more_post" />  -->
-                            <button type="submit" class="sag-button sag-load-more mx-auto" name="sag-load-more" data-paged="1"><?php _e('Load More'); ?></button>
+                            <button type="submit" class="sag-button sag-load-more mx-auto" name="sag-load-more" data-paged="1">
+                                <span class="spin sag-icon">
+                                    <i class="fa fa-refresh"></i>
+                                </span>
+                                <span class="text">
+                                    <?php _e('Load More'); ?>
+                                </span>
+                            </button>
                         </div>
                     <?php } else {
                         echo 'Nooooooooooo';
