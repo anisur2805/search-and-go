@@ -1,6 +1,8 @@
 ; ( function ( $ ) {
     $( document ).ready( function () {
 
+        revealPosts();
+
         // Ajax load more posts
         $( '.sag-load-more:not(.loading)' ).on( 'click', function ( e ) {
             e.preventDefault();
@@ -48,7 +50,9 @@
                             $button.removeClass( 'loading' ).find( '.text' ).slideDown( 320 )
                             $button.find( '.sag-icon' ).removeClass( 'spin' )
                             
-                        }, 2000 );
+                            revealPosts();
+
+                        }, 1000 );
 
                         $button.data( 'paged', paged + 1 );
                         $button.show();
@@ -67,6 +71,21 @@
                     console.dir( err )
                 } )
         } );
+
+        function revealPosts(){
+            var posts = $('.single-post-block:not(.reveal)')
+            var i = 0;
+
+            setInterval( function(){
+                if( i >= posts.length) return;
+
+                var el = posts[i];
+                
+                $(el).addClass('reveal')
+                i++;
+
+            }, 200);
+        }
 
     } );
 } )( jQuery );

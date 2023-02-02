@@ -11134,6 +11134,9 @@ section#banner ul.location-lists a h3, section#banner ul.location-lists a .h3 {
   line-height: 24px;
   margin-bottom: 15px;
 }
+.single-listing-item .sg-result-posts ul .sg-result-content .sg-post-excerpt:last-child {
+  margin-bottom: 0;
+}
 
 .testimonials-wrapper {
   padding: 40px 0;
@@ -11864,6 +11867,16 @@ footer::before {
   padding: 10px 15px;
   border-radius: 5px;
   background: transparent;
+}
+
+li.single-post-block {
+  transition: all 0.3s;
+  transform: translateY(100px);
+  opacity: 0;
+}
+li.single-post-block.reveal {
+  transform: translateY(0px);
+  opacity: 1;
 }
 
 .loading .spin {

@@ -1,4 +1,4 @@
-<li data-id="<?php echo get_the_ID(); ?>">
+<li class="single-post-block" data-id="<?php echo get_the_ID(); ?>">
     <div class="sg-feature-img">
         <a href=<?php echo get_the_permalink(); ?>>
             <?php if ( has_post_thumbnail() ) {

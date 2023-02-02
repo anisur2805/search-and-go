@@ -407,6 +407,9 @@ section#banner {
 					color: #000;
 					line-height: 24px;
 					margin-bottom: 15px;
+					&:last-child {
+						margin-bottom: 0;
+					}
 				}
 			}
 		}
@@ -1240,6 +1243,18 @@ footer {
     border-radius: 5px;
     background: transparent;
 }
+
+li.single-post-block {
+    transition: all .3s;
+    transform: translateY(100px);
+    opacity: 0;
+	&.reveal {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+ 
+
 .loading .spin {
 	animation: spin infinite linear 320ms;
 }
