@@ -461,9 +461,9 @@ OUTPUT;
             ]);
         } else {
 
-        $get_keyword  = isset( $_GET['keyword'] ) ? esc_attr( $_GET['keyword'] ) : '';
-        $get_category = isset( $_GET['category'] ) ? esc_attr( $_GET['category'] ) : '';
-        $get_location = isset( $_GET['location'] ) ? esc_attr( $_GET['location'] ) : 'rajshahi';
+        $get_keyword  = isset( $_POST['keyword'] ) ? esc_attr( $_POST['keyword'] ) : '';
+        $get_category = isset( $_POST['category'] ) ? esc_attr( $_POST['category'] ) : '';
+        $get_location = isset( $_POST['location'] ) ? esc_attr( $_POST['location'] ) : '';
 
         $paged = $_POST['paged'] + 1;
         $posts_per_page = 3;

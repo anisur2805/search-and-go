@@ -4,6 +4,14 @@
         // Ajax load more posts
         $( '.sag-load-more:not(.loading)' ).on( 'click', function ( e ) {
             e.preventDefault();
+            var queryString = window.location.search;
+
+            var urlParams = new URLSearchParams(queryString);
+            var location = urlParams.get('location')
+            var category = urlParams.get('category')
+            var keyword = urlParams.get('keyword')
+
+            console.log(location);
 
             var $button = $( this );
             var paged = $button.data( 'paged' ),
@@ -16,7 +24,10 @@
                 action: 'sag_load_more_post',
                 security: load_obj.security,
                 dataType: 'json',
-                paged: paged
+                paged: paged,
+                location: location,
+                keyword: keyword,
+                category: category
             }
 
             $button.addClass( 'loading' ).find( '.text' ).slideUp( 320 );
