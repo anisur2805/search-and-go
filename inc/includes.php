@@ -61,3 +61,5 @@ require get_template_directory() . '/lib/redux-framework/config.php';
 // require get_template_directory() . '/lib/redux-framework/metaboxes.php';
 
 require get_template_directory() . '/inc/wishlist.php';
+
+require get_template_directory() . '/inc/Admin/SetupWizard.php';
